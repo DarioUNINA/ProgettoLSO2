@@ -1,4 +1,5 @@
-DROP TABLE IF EXISTS public.utente;
+--Creazione Tabelle
+
 
 CREATE TABLE IF NOT EXISTS public.utente
 (
@@ -15,15 +16,15 @@ ALTER TABLE IF EXISTS public.utente
 
 --------------------------------
 
-DROP TABLE IF EXISTS public.bevanda;
 
 CREATE TABLE IF NOT EXISTS public.bevanda
 (
     nome character varying COLLATE pg_catalog."default" NOT NULL,
     descrizione character varying COLLATE pg_catalog."default" NOT NULL,
     prezzo double precision NOT NULL,
+    categoria character varying COLLATE pg_catalog."default" NOT NULL,
 
-    CONSTRAINT "utente_pkey" PRIMARY KEY (nome)
+    CONSTRAINT "bevanda_pkey" PRIMARY KEY (nome)
 )
 
 TABLESPACE pg_default;
@@ -34,13 +35,12 @@ ALTER TABLE IF EXISTS public.bevanda
 
 --------------------------------
 
-DROP TABLE IF EXISTS public.ordine;
+
 
 CREATE TABLE IF NOT EXISTS public.ordine
 (
     id_ordine integer NOT NULL,
-    username integer NOT NULL,
-    nome integer NOT NULL,
+    utente character varying NOT NULL,
     chiuso boolean NOT NULL DEFAULT FALSE,
     CONSTRAINT ordine_pkey PRIMARY KEY (id_ordine)
 )
@@ -52,3 +52,41 @@ ALTER TABLE IF EXISTS public.ordine
 
 
 --------------------------------
+
+
+CREATE TABLE IF NOT EXISTS public.ordinazione
+(
+    id_ordine integer NOT NULL,
+    bevanda character varying NOT NULL
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.ordinazione
+    OWNER to postgres;
+
+
+--------------------------------
+
+--Costraints Foreign Keys
+
+--Costraint per Foreign Keys
+
+ALTER TABLE ordine
+ADD CONSTRAINT ordine_fk FOREIGN KEY (utente)
+    REFERENCES public.utente (username) MATCH SIMPLE
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+
+ALTER TABLE ordinazione
+ADD CONSTRAINT ordinazione_ordine_fk FOREIGN KEY (id_ordine)
+    REFERENCES public.ordine (id_ordine) MATCH SIMPLE
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+
+ALTER TABLE ordinazione
+ADD CONSTRAINT ordinazione_bevanda_fk FOREIGN KEY (bevanda)
+    REFERENCES public.bevanda (nome) MATCH SIMPLE
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+
