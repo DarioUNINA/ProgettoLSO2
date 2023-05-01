@@ -1,0 +1,54 @@
+DROP TABLE IF EXISTS public.utente;
+
+CREATE TABLE IF NOT EXISTS public.utente
+(
+    username character varying COLLATE pg_catalog."default" NOT NULL,
+    password character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "utente_pkey" PRIMARY KEY (username)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.utente
+    OWNER to postgres;
+
+
+--------------------------------
+
+DROP TABLE IF EXISTS public.bevanda;
+
+CREATE TABLE IF NOT EXISTS public.bevanda
+(
+    nome character varying COLLATE pg_catalog."default" NOT NULL,
+    descrizione character varying COLLATE pg_catalog."default" NOT NULL,
+    prezzo double precision NOT NULL,
+
+    CONSTRAINT "utente_pkey" PRIMARY KEY (nome)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.bevanda
+    OWNER to postgres;
+
+
+--------------------------------
+
+DROP TABLE IF EXISTS public.ordine;
+
+CREATE TABLE IF NOT EXISTS public.ordine
+(
+    id_ordine integer NOT NULL,
+    username integer NOT NULL,
+    nome integer NOT NULL,
+    chiuso boolean NOT NULL DEFAULT FALSE,
+    CONSTRAINT ordine_pkey PRIMARY KEY (id_ordine)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.ordine
+    OWNER to postgres;
+
+
+--------------------------------
