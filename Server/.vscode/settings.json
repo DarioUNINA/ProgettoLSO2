@@ -1,0 +1,24 @@
+{
+    "files.associations": {
+        "cmath": "c",
+        "compare": "c",
+        "cstdio": "c",
+        "cstdlib": "c",
+        "limits": "c",
+        "new": "c",
+        "*.tcc": "c",
+        "type_traits": "c",
+        "userfunctions.h": "c",
+        "stdlib.h": "c",
+        "unistd.h": "c",
+        "concepts": "c",
+        "cstdarg": "c",
+        "cstdbool": "c",
+        "cstdint": "c",
+        "typeinfo": "c",
+        "utilities.h": "c",
+        "E.C": "cpp",
+        "linkedlist.h": "c",
+        "utente.h": "c"
+    }
+}
