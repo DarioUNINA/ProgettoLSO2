@@ -10,5 +10,9 @@ typedef struct utente{
 
 utente* newUtente(char* username, char* password);
 
+char* serializeUtente(utente* u);
+
+utente* deserializeUtente(char* stringa);
+
 
 #endif

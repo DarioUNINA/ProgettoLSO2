@@ -44,7 +44,7 @@ int connectSocket(int mySocket, struct sockaddr_in serverAddr){
 }
 
 
-int getSocket(int flag, char* ip){
+int getSocket(){
 
     int mySocket;
 	struct sockaddr_in serverAddr;
@@ -60,36 +60,21 @@ int getSocket(int flag, char* ip){
 	
 	// assign IP, PORT
 	serverAddr.sin_family = AF_INET;
-
-    if(flag==0){
-
-    	serverAddr.sin_port = htons(8080);
-        serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);
-        return connectSocket(mySocket, serverAddr);
-
-    }else{
-
-        if(flag==1)
-    	    serverAddr.sin_port = htons(8081);
-        else
-            serverAddr.sin_port = htons(8082);
-                    
-        serverAddr.sin_addr.s_addr = inet_addr(ip);
-        
-        if (connect(mySocket, (struct sockaddr*)&serverAddr, sizeof(serverAddr))!= 0) return -1;
-        
-        return mySocket;
-    }
-
-}
-
-
-
-utente* getUtente(){
-        
-    utente* newUtente = (utente*)malloc(sizeof(utente));
-    newUtente->username = (char*)malloc(sizeof(char)*DIMBUFF);
-    newUtente->password = (char*)malloc(sizeof(char)*DIMBUFF);
+    serverAddr.sin_port = htons(8080);
+    serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);
     
-    return newUtente;
+    if ((bind(mySocket, (struct sockaddr*)&serverAddr, sizeof(serverAddr))) != 0){
+        printf("Socket bind failed...\n");
+        exit(-2);
+	}else
+		printf("Socket successfully binded..\n");
+
+    if ((listen(mySocket, 10)) != 0){
+        printf("Listen failed...\n");
+        exit(-3);
+    }else
+        printf("Server listening..\n");
+
+    return mySocket;
+
 }

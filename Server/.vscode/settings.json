@@ -19,6 +19,11 @@
         "utilities.h": "c",
         "E.C": "cpp",
         "linkedlist.h": "c",
-        "utente.h": "c"
+        "utente.h": "c",
+        "friendadmin.h": "c",
+        "ordinerepository.h": "c",
+        "utenterepository.h": "c",
+        "server.h": "c",
+        "cqueue.h": "c"
     }
 }

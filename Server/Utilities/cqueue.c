@@ -115,7 +115,7 @@ CPointer cqueue_peek( CQueue* queue, int index ){
   if( index < 0 ){
     index += cqueue_length( queue );
   }
-  if( index >= 0 && index < cqueue_length( queue ) ){
+  if( index >= 0 && (unsigned int)index < cqueue_length( queue ) ){
     return queue->data[( queue->front + index ) % queue->data_size];
   }
   return NULL;

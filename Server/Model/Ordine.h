@@ -11,5 +11,8 @@ typedef struct ordine{
 
 ordine* newOrdine(unsigned int idOrdine, char* utente, unsigned short chiuso);
 
+char* serializeOrdine(ordine* o);
+
+ordine* deserializeOrdine(char* stringa);
 
 #endif

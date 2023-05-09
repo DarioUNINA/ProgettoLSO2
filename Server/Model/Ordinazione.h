@@ -10,5 +10,9 @@ typedef struct ordinazione{
 
 ordinazione* newOrdinazione(unsigned int idOrdine, char** bevande);
 
+char* serializeOrdinazione(ordinazione* o);
+
+ordinazione* deserializeOrdinazione(char* stringa);
+
 
 #endif

@@ -24,7 +24,6 @@ pthread_t groupAdminThread;
 pthread_t friendAdminThread;
 pthread_t msgSenderThread;
 
-node* clients;
 
 PGresult* runQuery(char* strings[]);
 
