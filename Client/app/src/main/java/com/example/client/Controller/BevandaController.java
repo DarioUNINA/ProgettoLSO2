@@ -1,0 +1,156 @@
+package com.example.client.Controller;
+
+import com.google.gson.Gson;
+import com.example.client.Model.Enum.TipoBevanda;
+import com.example.client.Model.Bevanda;
+import com.example.client.Model.Utente;
+
+
+import org.modelmapper.ModelMapper;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class BevandaController {
+
+    private ConnessioneController connessioneController;
+    private ModelMapper modelMapper;
+    private Gson gson;
+
+    public BevandaController() {
+        connessioneController = new ConnessioneController();
+        modelMapper = new ModelMapper();
+        gson = new Gson();
+    }
+
+    public ArrayList<Bevanda> getCarrelloByUtente(Utente utente){
+        ArrayList<Bevanda> bevande = new ArrayList<>();
+        String result = null;
+
+        connessioneController.startConnection();
+
+        connessioneController.writeOnOutput("getCarrelloByUtente$$"+utenteToJson(utente));
+
+        result = connessioneController.readFromInput();
+
+        System.out.println(result);
+
+        // Separo i JSON e creo un array che riverso nell'arraylist
+        if(result != null){
+            result = result.replaceAll("\\}\\s*\\{", "},{");
+
+            result = "[" + result + "]";
+
+            Bevanda[] bevandeArray = gson.fromJson(result, Bevanda[].class);
+
+            // Fai qualcosa con l'array di oggetti Bevanda
+            for (Bevanda bevanda : bevandeArray)
+                bevande.add(bevanda);
+        }
+
+
+        return bevande;
+    }
+
+    public ArrayList<Bevanda> getStoricoByUtenteAndBevandaType(Utente utente, TipoBevanda bevanda_type){
+        ArrayList<Bevanda> bevande = new ArrayList<>();
+        String result = null;
+
+        connessioneController.startConnection();
+
+        connessioneController.writeOnOutput("getStoricoByUtenteAndBevandaType$$"+utenteToJson(utente)+"$$"+bevanda_type.toString());
+
+        result = connessioneController.readFromInput();
+
+        System.out.println(result);
+
+        // Separo i JSON e creo un array che riverso nell'arraylist
+        if(result != null){
+            result = result.replaceAll("\\}\\s*\\{", "},{");
+
+            result = "[" + result + "]";
+
+            Bevanda[] bevandeArray = gson.fromJson(result, Bevanda[].class);
+
+            // Fai qualcosa con l'array di oggetti Bevanda
+            for (Bevanda bevanda : bevandeArray)
+                bevande.add(bevanda);
+        }
+
+        connessioneController.closeConnection();
+
+        return bevande;
+    }
+
+    public ArrayList<Bevanda> getDisponibiliByBevandaType(TipoBevanda bevanda_type){
+
+        ArrayList<Bevanda> bevande = new ArrayList<>();
+        String result = null;
+
+        connessioneController.startConnection();
+
+        connessioneController.writeOnOutput("getDisponibiliByBevandaType$$"+bevanda_type.toString());
+
+        // Recupero la stringa contenente più JSON {json1}{json2}{...}
+        result = connessioneController.readFromInput();
+
+        System.out.println(result);
+
+        // Separo i JSON e creo un array che riverserò nell'arraylist
+        if(result != null){
+            result = result.replaceAll("\\}\\s*\\{", "},{");
+
+            result = "[" + result + "]";
+
+            Bevanda[] bevandeArray = gson.fromJson(result, Bevanda[].class);
+
+            // Fai qualcosa con l'array di oggetti Bevanda
+            for (Bevanda bevanda : bevandeArray)
+                bevande.add(bevanda);
+        }
+
+
+        // conversione
+
+        connessioneController.closeConnection();
+
+        return bevande;
+
+    }
+
+
+
+    public void aggiungiACarrello(Utente utente, Bevanda bevanda){
+
+        connessioneController.startConnection();
+
+        connessioneController.writeOnOutput("aggiungiACarrello$$"+utenteToJson(utente)+"$$"+bevandaToJson(bevanda));
+
+        connessioneController.closeConnection();
+
+    }
+
+    public void acquistaBevanda(Utente utente, Bevanda bevanda){
+        connessioneController.startConnection();
+
+        connessioneController.writeOnOutput("acquistaBevanda$$"+utenteToJson(utente)+"$$"+bevandaToJson(bevanda));
+
+        connessioneController.closeConnection();
+    }
+
+    public String bevandaToJson(Bevanda bevanda){
+        String json = gson.toJson(bevanda);
+        return json;
+    }
+
+    public Bevanda jsonToBevanda(String json){
+        Bevanda bevanda = gson.fromJson(json, Bevanda.class);
+        return bevanda;
+    }
+
+    public String utenteToJson(Utente utente){
+        String json = gson.toJson(utente);
+        return json;
+    }
+
+}
