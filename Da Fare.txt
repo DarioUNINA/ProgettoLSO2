@@ -1,0 +1,8 @@
+1) Popolamento DB
+
+
+Funzioni:
+1)Registrazione e LogIn no stringa vuota e doppio dollaro
+2)Ottenere bevande
+3)Acquisto e pagamento bevande da carrello
+4)suggerimenti bevande

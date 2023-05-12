@@ -1,13 +1,13 @@
 package com.example.client.Model;
 
-import com.example.client.Model.Enum.TipoBevanda;
 
 public class Bevanda {
 
-    private Integer id;
     private String nome;
+
+    private String descrizione;
     private Float prezzo;
-    private TipoBevanda tipo;
+    private String tipo;
 
     public Bevanda(){
 
@@ -18,19 +18,11 @@ public class Bevanda {
         this.prezzo = prezzo;
     }
 
-    public Bevanda(Integer id, String nome, Float prezzo, TipoBevanda tipo) {
-        this.id = id;
+    public Bevanda(Integer id, String nome,String descrizione, Float prezzo, String tipo) {
         this.nome = nome;
+        this.descrizione = descrizione;
         this.prezzo = prezzo;
         this.tipo = tipo;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -41,6 +33,14 @@ public class Bevanda {
         this.nome = nome;
     }
 
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+
     public Float getPrezzo() {
         return prezzo;
     }
@@ -49,11 +49,11 @@ public class Bevanda {
         this.prezzo = prezzo;
     }
 
-    public TipoBevanda getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoBevanda tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 

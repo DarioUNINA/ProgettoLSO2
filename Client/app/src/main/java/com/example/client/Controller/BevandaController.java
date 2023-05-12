@@ -1,7 +1,6 @@
 package com.example.client.Controller;
 
 import com.google.gson.Gson;
-import com.example.client.Model.Enum.TipoBevanda;
 import com.example.client.Model.Bevanda;
 import com.example.client.Model.Utente;
 
@@ -52,7 +51,7 @@ public class BevandaController {
         return bevande;
     }
 
-    public ArrayList<Bevanda> getStoricoByUtenteAndBevandaType(Utente utente, TipoBevanda bevanda_type){
+    public ArrayList<Bevanda> getStoricoByUtenteAndBevandaType(Utente utente, String bevanda_type){
         ArrayList<Bevanda> bevande = new ArrayList<>();
         String result = null;
 
@@ -82,7 +81,7 @@ public class BevandaController {
         return bevande;
     }
 
-    public ArrayList<Bevanda> getDisponibiliByBevandaType(TipoBevanda bevanda_type){
+    public ArrayList<Bevanda> getDisponibiliByBevandaType(String bevanda_type){
 
         ArrayList<Bevanda> bevande = new ArrayList<>();
         String result = null;

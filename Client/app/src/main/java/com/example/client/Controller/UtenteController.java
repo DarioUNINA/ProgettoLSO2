@@ -23,7 +23,7 @@ public class UtenteController {
     }
 
 
-    public Utente getUtenteByEmailAndPassword(String email, String password){
+    public Utente getUtente(String username, String password){
 
 
         Utente utente = null;
@@ -33,7 +33,7 @@ public class UtenteController {
 
 
         //richiesta
-        connessioneController.writeOnOutput("getUtenteByEmailAndPassword$$"+email+"$$"+password);
+        connessioneController.writeOnOutput("getUtente$$"+username+"$$"+password);
 
 
         //ricezione

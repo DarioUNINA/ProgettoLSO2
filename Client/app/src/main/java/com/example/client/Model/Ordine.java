@@ -5,19 +5,21 @@ import java.util.List;
 public class Ordine {
 
     private int idOrdine;
-
-    private boolean chiuso;
+    private String utente;
 
     private List<Bevanda> bevandaList;
+    private boolean chiuso;
+
 
     public Ordine() {
     }
 
 
-    public Ordine(int idOrdine, boolean chiuso, List<Bevanda> bevandaList) {
+    public Ordine(int idOrdine, String utente,List<Bevanda> bevandaList, boolean chiuso) {
         this.idOrdine = idOrdine;
-        this.chiuso = chiuso;
+        this.utente = utente;
         this.bevandaList = bevandaList;
+        this.chiuso = chiuso;
     }
 
     public int getIdOrdine() {
@@ -28,12 +30,12 @@ public class Ordine {
         this.idOrdine = idOrdine;
     }
 
-    public boolean isChiuso() {
-        return chiuso;
+    public String getUtente() {
+        return utente;
     }
 
-    public void setChiuso(boolean chiuso) {
-        this.chiuso = chiuso;
+    public void setUtente(String utente) {
+        this.utente = utente;
     }
 
     public List<Bevanda> getBevandaList() {
@@ -43,4 +45,13 @@ public class Ordine {
     public void setBevandaList(List<Bevanda> bevandaList) {
         this.bevandaList = bevandaList;
     }
+
+    public boolean isChiuso() {
+        return chiuso;
+    }
+
+    public void setChiuso(boolean chiuso) {
+        this.chiuso = chiuso;
+    }
+
 }

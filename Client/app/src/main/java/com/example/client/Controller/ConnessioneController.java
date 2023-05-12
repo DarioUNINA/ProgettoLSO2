@@ -15,7 +15,7 @@ public class ConnessioneController {
     private PrintWriter output;
 
     private final String serverName = "192.168.1.248";
-    private final int serverPort = 1926;
+    private final int serverPort = 8080;
 
 
 
