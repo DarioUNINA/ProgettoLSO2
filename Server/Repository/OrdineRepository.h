@@ -6,4 +6,5 @@
 extern PGconn* connection;
 extern pthread_mutex_t connectionMutex;
 
+
 #endif

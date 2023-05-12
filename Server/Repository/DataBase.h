@@ -3,6 +3,7 @@
 #define DATABASE_H
 
 #include "postgresql/libpq-fe.h"
+#include <string.h>
 #include <pthread.h>
 
 

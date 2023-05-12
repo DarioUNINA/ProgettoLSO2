@@ -1,7 +1,7 @@
 #include "UtenteController.h"
 
 void* utenteController(){
-    char *msg, *command, *result;
+    char *msg, *command = malloc(sizeof(char)*DIMBUFF), *result = malloc(sizeof(char)*DIMBUFF);
 
     int socket;
 
@@ -16,11 +16,20 @@ void* utenteController(){
                 
             command = strtok(NULL, "$$");
 
-            // if(strcmp(command, "SearchUser") == 0){ //scrivere comandi
-            //     result = SearchUser(msg);
-            // }
-            
+            if(strcmp(command, "getUtente") == 0){
+                char* username = strtok(NULL, "$$");
+                char* password = strtok(NULL, "$$");
+                result = getUtente(username, password);
+                }
+
+
+            write(socket, result, DIMBUFF);
+
         }
         pthread_mutex_unlock(&utenteMutex);
     }   
+
+    free(command);
+    free(result);
+    pthread_exit(NULL);
 }

@@ -1,6 +1,6 @@
-Richiesta Risposta 
+-UtenteController(utente$$)
 
-utente$$getUtente$$username$$password
+--LogIn/Registrazione
+---utente$$getUtente$$username$$password
+---true/false 
 
-
-true/false

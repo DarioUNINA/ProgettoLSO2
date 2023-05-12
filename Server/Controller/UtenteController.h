@@ -4,6 +4,7 @@
 #include "../Repository/UtenteRepository.h"
 #include "../server.h"
 #include "../Utilities/cqueue.h"
+#include <unistd.h>
 
 CQueue* utenteQueue;
 pthread_mutex_t utenteMutex;

@@ -1,4 +1,4 @@
 --Utente
-Insert into utente(username, password) values ('Dario', '123',);
-Insert into utente(username, password) values ('Renato', '123',);
-Insert into utente(username, password) values ('Marco', '123',);
+Insert into utente(username, password) values ('Dario', '123');
+Insert into utente(username, password) values ('Renato', '123');
+Insert into utente(username, password) values ('Marco', '123');

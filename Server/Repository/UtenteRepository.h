@@ -6,4 +6,7 @@
 extern PGconn* connection;
 extern pthread_mutex_t connectionMutex;
 
+char* getUtente(char* username, char* password);
+
+
 #endif
