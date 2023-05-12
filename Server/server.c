@@ -1,11 +1,11 @@
 #include "server.h"
 
 
-void recieveData(int mySocket){
+void receiveData(int mySocket){
     int clientSocket;
     struct sockaddr_in clientAddr;
     int len = sizeof(clientAddr);
-    char msg[DIMBUFF];
+    char * msg = malloc(sizeof(char)*DIMBUFF);
 
     while(1){
 
@@ -17,11 +17,44 @@ void recieveData(int mySocket){
         }else{
             printf("Client accepted... \n");
 
-            read(clientSocket, msg, sizeof(msg));
-            executeCommand(msg);
+            read(clientSocket, msg, DIMBUFF);
+
+            char* command = strtok(msg, "$$");
+
+            if(strcmp(command, "bevanda")==0){
+                pthread_mutex_lock(&bevandaMutex);
+                cqueue_push(bevandaQueue, msg);
+                cqueue_push(bevandaQueue,clientSocket);
+                pthread_mutex_unlock(&bevandaMutex);
+            }
+
+            if(strcmp(command, "utente")==0){
+                pthread_mutex_lock(&utenteMutex);
+                cqueue_push(utenteQueue, msg);
+                cqueue_push(utenteQueue,clientSocket);
+                pthread_mutex_unlock(&utenteMutex);
+            }
+
+            if(strcmp(command, "ordinazione")==0){
+                pthread_mutex_lock(&ordinazioneMutex);
+                cqueue_push(ordinazioneQueue, msg);
+                cqueue_push(ordinazioneQueue,clientSocket);
+                pthread_mutex_unlock(&ordinazioneMutex);
+            }
+
+            if(strcmp(command, "ordine")==0){
+                pthread_mutex_lock(&ordineMutex);
+                cqueue_push(ordineQueue, msg);
+                cqueue_push(ordineQueue,clientSocket);
+                pthread_mutex_unlock(&ordineMutex);
+            }
+
         }
     }
+
+    free(msg);
 }
+
 
 void startThreads(){
     
@@ -30,10 +63,12 @@ void startThreads(){
     pthread_create(&ordinazioneThread, NULL, ordinazioneController, NULL);
     pthread_create(&bevandaThread, NULL, bevandaController, NULL);
 
-    pthread_join(utenteThread, NULL);
-    pthread_join(ordineThread, NULL);
-    pthread_join(ordinazioneThread, NULL);
-    pthread_join(bevandaThread, NULL);
+
+    pthread_detach(utenteThread);
+    pthread_detach(ordineThread);
+    pthread_detach(ordinazioneThread);
+    pthread_detach(bevandaThread);
+
 }
 
 
@@ -44,6 +79,11 @@ void init(){
     ordinazioneQueue = cqueue_new();
     bevandaQueue = cqueue_new();
 
+    utenteMutex = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
+    ordineMutex = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
+    ordinazioneMutex = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
+    bevandaMutex = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
+
     getDBConnection();
     startThreads();
 }
@@ -52,7 +92,7 @@ void init(){
 void start(){                                                           
 
     init();
-    recieveData(getSocket());
+    receiveData(getSocket());
 
 }
 
@@ -60,5 +100,6 @@ void start(){
 int main(int argc, char *argv[]){
 
     start();
+            
     return 0;
 }

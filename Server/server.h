@@ -21,9 +21,14 @@ extern CQueue* ordineQueue;
 extern CQueue* ordinazioneQueue;
 extern CQueue* bevandaQueue;
 
+extern pthread_mutex_t utenteMutex;
+extern pthread_mutex_t ordineMutex;
+extern pthread_mutex_t ordinazioneMutex;
+extern pthread_mutex_t bevandaMutex;
+
 CQueue* serverQueue;
 
-void recieveData(int mySocket);
+void receiveData(int mySocket);
 
 void startThreads();
 

@@ -6,6 +6,8 @@
 #include "../Utilities/cqueue.h"
 
 CQueue* bevandaQueue;
+pthread_mutex_t bevandaMutex;
+
 extern CQueue* serverQueue;
 
 void* bevandaController();

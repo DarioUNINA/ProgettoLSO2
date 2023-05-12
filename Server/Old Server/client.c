@@ -73,9 +73,6 @@ void* serverFunction(void* a)
 
 int main()
 {
-	pthread_t thread;
-	pthread_create(&thread, NULL, &serverFunction, NULL);
-	pthread_detach(thread);
 
 	int sockfd, connfd;
 	struct sockaddr_in servaddr, cli;
@@ -93,7 +90,7 @@ int main()
 
 	// assign IP, PORT
 	servaddr.sin_family = AF_INET;
-	servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+	servaddr.sin_addr.s_addr = inet_addr("192.168.233.98");
 	servaddr.sin_port = htons(PORT);
 
 	// connect the client socket to server socket
@@ -101,10 +98,12 @@ int main()
 
 
 	// function for chat
-	char buff[MAX] = "UA$$logIn$$127.0.0.1$$dario$$passord";
+	char buff[MAX] = "bevanda$$gianmarco$$";
 
 	write(sockfd, buff, sizeof(buff));
 
 	// close the socket
 	close(sockfd);
+
+	return 0;
 }

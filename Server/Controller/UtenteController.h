@@ -6,6 +6,7 @@
 #include "../Utilities/cqueue.h"
 
 CQueue* utenteQueue;
+pthread_mutex_t utenteMutex;
 extern CQueue* serverQueue;
 
 void* utenteController();

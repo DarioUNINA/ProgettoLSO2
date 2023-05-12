@@ -194,36 +194,6 @@ void* friendAdmin(void* friendAdminQueue){
             if(strcmp(command, "AddFriend") == 0){
                 result = AddFriend(msg);
             }
-
-            if(strcmp(command, "RemoveFriend") == 0){
-                result = RemoveFriend(msg);
-            }
-
-            if(strcmp(command, "ShowFriends") == 0){
-                result = ShowFriends(msg);
-            }
-
-            if(strcmp(command, "ShowFriendRequests") == 0){
-                result = ShowFriendRequests(msg);
-            }
-
-            if(strcmp(command, "AcceptFriendRequest") == 0){
-                AcceptFriendRequest(msg);
-                continue;
-            }
-
-            if(strcmp(command, "RejectFriendRequest") == 0){
-                RejectFriendRequest(msg);
-                continue;
-            }
-
-
-            pthread_mutex_lock(&msgSenderMutex);
-
-            strcat(output,strcat(strcat(ip, "$$"), result));
-            cqueue_push(msgSenderQueue, output);
-            
-            pthread_mutex_unlock(&msgSenderMutex);
             
         }
         pthread_mutex_unlock(&friendAdminMutex);

@@ -6,6 +6,7 @@
 #include "../Utilities/cqueue.h"
 
 CQueue* ordineQueue;
+pthread_mutex_t ordineMutex;
 extern CQueue* serverQueue;
 
 void* ordineController();
