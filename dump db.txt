@@ -49,6 +49,11 @@ TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.ordine
     OWNER to postgres;
+    
+CREATE SEQUENCE id_ordine_seq
+START 1
+INCREMENT 1
+OWNED BY ordine.id_ordine;
 
 
 --------------------------------
@@ -89,4 +94,9 @@ ADD CONSTRAINT ordinazione_bevanda_fk FOREIGN KEY (bevanda)
     REFERENCES public.bevanda (nome) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
+    
+    
+    
+  
+  
 

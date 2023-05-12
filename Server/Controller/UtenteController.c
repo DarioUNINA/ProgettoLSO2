@@ -19,8 +19,8 @@ void* utenteController(){
             if(strcmp(command, "getUtente") == 0){
                 char* username = strtok(NULL, "$$");
                 char* password = strtok(NULL, "$$");
-                result = getUtente(username, password);
-                }
+                getUtente(username, password, result);
+            }
 
 
             write(socket, result, DIMBUFF);

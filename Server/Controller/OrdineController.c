@@ -1,7 +1,7 @@
 #include "OrdineController.h"
 
 void* ordineController(){
-    char *msg, *command, *result;
+    char *msg, *command = malloc(sizeof(char)*DIMBUFF), *result = malloc(sizeof(char)*DIMBUFF);
 
     int socket;
 
@@ -20,7 +20,12 @@ void* ordineController(){
             //     result = SearchUser(msg);
             // }
             
+            write(socket, result, DIMBUFF);
         }
         pthread_mutex_unlock(&ordineMutex);
     }
+
+    free(command);
+    free(result);
+    pthread_exit(NULL);
 }

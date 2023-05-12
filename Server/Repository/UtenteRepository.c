@@ -1,6 +1,6 @@
 #include "UtenteRepository.h"
 
-char* getUtente(char* username, char* password){
+void getUtente(char* username, char* password, char* result){
     char* strings[6];
     strings[0] = "SELECT * FROM utente WHERE username = '";
     strings[1] = username;
@@ -23,10 +23,10 @@ char* getUtente(char* username, char* password){
     if(rows == 0){
         printf("Nessun utente trovato\n");
         PQclear(res);
-        return "false";
+        result = "false";
     }else{
         printf("Utente trovato\n");
-        return "true";
+        result = "true";
     }
 
 }

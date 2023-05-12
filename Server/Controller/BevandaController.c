@@ -2,8 +2,7 @@
 
 void* bevandaController(){
 
-    char *msg, *command, *result;
-
+    char *msg, *command = malloc(sizeof(char)*DIMBUFF), *result = malloc(sizeof(char)*DIMBUFF);
     int socket;
 
     while(1){
@@ -21,7 +20,12 @@ void* bevandaController(){
             //     result = SearchUser(msg);
             // }
             
+            write(socket, result, DIMBUFF);
         }
         pthread_mutex_unlock(&bevandaMutex);
     }
+
+    free(command);
+    free(result);
+    pthread_exit(NULL);
 }   
