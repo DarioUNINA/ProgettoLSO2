@@ -4,7 +4,25 @@
 ---getUtente$$username$$password
 ---true/false 
 
+
+
+
 -BevandaController(bevanda$$)
+
 --Retrieve Bevande
 ---getBevande$$usename
 ---jsonbevande
+
+
+
+
+
+-OrdineController(ordine$$)
+
+--Retrieve Ordini (solo quelli chiusi, quello aperto e' solo ovvero il carrello)
+---getOrdini$$username
+---json ordini
+
+--Aggiungere Bevanda a un ordine
+---addBevanda$$id_ordine$$bevanda
+---non ritorna nulla (mettiamo anche i duplicati senza quantita' non ci interessa)
