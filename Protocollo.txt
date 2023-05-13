@@ -1,6 +1,10 @@
 -UtenteController(utente$$)
 
 --LogIn/Registrazione
----utente$$getUtente$$username$$password
+---getUtente$$username$$password
 ---true/false 
 
+-BevandaController(bevanda$$)
+--Retrieve Bevande
+---getBevande$$usename
+---jsonbevande

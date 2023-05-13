@@ -8,7 +8,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h> // read(), write(), close()
-#define MAX 80
+#define MAX 800
 #define PORT 8080
 #define SA struct sockaddr
 
@@ -16,7 +16,6 @@
 
 int main()
 {
-
 	int sockfd, connfd;
 	struct sockaddr_in servaddr, cli;
 
@@ -33,7 +32,7 @@ int main()
 
 	// assign IP, PORT
 	servaddr.sin_family = AF_INET;
-	servaddr.sin_addr.s_addr = inet_addr("100.74.13.97");
+	servaddr.sin_addr.s_addr = inet_addr("192.168.1.54");
 	servaddr.sin_port = htons(PORT);
 
 	// connect the client socket to server socket
@@ -41,7 +40,8 @@ int main()
 
 
 	// function for chat
-	char buff[MAX] = "utente$$getUtente$$Dario$$123";
+	// char buff[MAX] = "utente$$getUtente$$Dario$$123";
+	char buff[MAX] = "bevanda$$getBevande$$Dario";
 
 	write(sockfd, buff, sizeof(buff));
 

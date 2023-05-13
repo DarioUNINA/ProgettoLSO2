@@ -17,11 +17,17 @@ void getBevande(char* utente, char* result){
         return NULL;
     }
 
-    int rows = PQntuples(res);
-    int columns = PQnfields(res);
+    int rows = PQntuples(res), columns = PQnfields(res);
 
-    for(int i=0; i<PQntuples(res); i++){ //costruire le bevande
-        // result = strcat(result, PQgetvalue(res, i, 0));
-        // result = strcat(result, "$$");
+    printf(" ho trovato %d bevande\n", rows);
+
+    for(int i=0; i<PQntuples(res); i++){
+        bevanda* b = newBevanda(PQgetvalue(res, i, 0), PQgetvalue(res, i, 1), atof(PQgetvalue(res, i, 2)), PQgetvalue(res, i, 3));
+        char* temp = serializeBevanda(b);
+
+        result = strcat(result, temp);
     }
+
 }
+
+

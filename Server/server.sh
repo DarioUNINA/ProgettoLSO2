@@ -1,3 +1,3 @@
 #!/bin/bash
-gcc -fcommon Repository/UtenteRepository.c Repository/OrdineRepository.c Repository/BevandaRepository.c Repository/OrdinazioneRepository.c Controller/UtenteController.c Controller/BevandaController.c Controller/OrdinazioneController.c Controller/OrdineController.c Repository/DataBase.c Utilities/cqueue.c Utilities/Utilities.c server.c -pthread -L/usr/include/postgresql/libpq -lpq -o server
+gcc -fcommon Model/Bevanda.c Model/Utente.c Model/Ordine.c Model/Ordinazione.c Repository/UtenteRepository.c Repository/OrdineRepository.c Repository/BevandaRepository.c Repository/OrdinazioneRepository.c Controller/UtenteController.c Controller/BevandaController.c Controller/OrdinazioneController.c Controller/OrdineController.c Repository/DataBase.c Utilities/cqueue.c Utilities/Utilities.c server.c -pthread -L/usr/include/postgresql/libpq -lpq -o server
 ./server

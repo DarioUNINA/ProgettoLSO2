@@ -2,7 +2,7 @@
 
 void* bevandaController(){
 
-    char *msg, *command = malloc(sizeof(char)*DIMBUFF), *result = malloc(sizeof(char)*DIMBUFF);
+    char *msg, *command = malloc(sizeof(char)*DIMBUFF), *result = malloc(sizeof(char)*5*DIMBUFF);
     int socket;
 
     while(1){
@@ -16,10 +16,10 @@ void* bevandaController(){
                 
             command = strtok(NULL, "$$");
 
-            // if(strcmp(command, "SearchUser") == 0){ //scrivere comandi
-            //     result = SearchUser(msg);
-            // }
-            
+            if(strcmp(command, "getBevande") == 0){ //scrivere comandi
+                getBevande(strtok(NULL, "$$"), result);
+            }
+
             write(socket, result, DIMBUFF);
         }
         pthread_mutex_unlock(&bevandaMutex);
