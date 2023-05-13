@@ -24,6 +24,7 @@
         "ordinerepository.h": "c",
         "utenterepository.h": "c",
         "server.h": "c",
-        "cqueue.h": "c"
+        "cqueue.h": "c",
+        "bevanda.h": "c"
     }
 }

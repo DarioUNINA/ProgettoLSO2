@@ -41,13 +41,13 @@ int main()
 
 	// function for chat
 	// char buff[MAX] = "utente$$getUtente$$Dario$$123";
-	char buff[MAX] = "bevanda$$getBevande$$Dario";
+	char buff[MAX] = "utente$$getUtente$$Dario$$$123";
 
 	write(sockfd, buff, sizeof(buff));
 
 	    // lettura della risposta del server
     read(sockfd, buff, sizeof(buff));
-    printf("%s\n", buff);
+    printf("Ho ricevuto %s\n", buff);
 	close(sockfd);
 
 	return 0;

@@ -22,7 +22,6 @@ void* utenteController(){
                 getUtente(username, password, result);
             }
 
-
             write(socket, result, DIMBUFF);
 
         }

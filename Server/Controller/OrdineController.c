@@ -16,9 +16,9 @@ void* ordineController(){
                 
             command = strtok(NULL, "$$");
 
-            // if(strcmp(command, "SearchUser") == 0){ //scrivere comandi
-            //     result = SearchUser(msg);
-            // }
+            if(strcmp(command, "getCarrello") == 0)
+                getOrdini(strtok(NULL, "$$"), result);
+
             
             write(socket, result, DIMBUFF);
         }

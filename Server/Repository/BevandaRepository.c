@@ -25,7 +25,7 @@ void getBevande(char* utente, char* result){
         bevanda* b = newBevanda(PQgetvalue(res, i, 0), PQgetvalue(res, i, 1), atof(PQgetvalue(res, i, 2)), PQgetvalue(res, i, 3));
         char* temp = serializeBevanda(b);
 
-        result = strcat(result, temp);
+        strcat(result, temp);
     }
 
 }

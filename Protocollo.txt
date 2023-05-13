@@ -19,9 +19,9 @@
 
 -OrdineController(ordine$$)
 
---Retrieve Ordini (solo quelli chiusi, quello aperto e' solo ovvero il carrello)
----getOrdini$$username
----json ordini
+--Retrieve Carrello
+---getCarrello$$username
+---json bevande
 
 --Aggiungere Bevanda a un ordine
 ---addBevanda$$id_ordine$$bevanda

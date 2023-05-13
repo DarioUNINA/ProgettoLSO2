@@ -23,10 +23,10 @@ void getUtente(char* username, char* password, char* result){
     if(rows == 0){
         printf("Nessun utente trovato\n");
         PQclear(res);
-        result = "false";
+        strcat(result,"false");
     }else{
         printf("Utente trovato\n");
-        result = "true";
+        strcat(result,"true");
     }
 
 }
