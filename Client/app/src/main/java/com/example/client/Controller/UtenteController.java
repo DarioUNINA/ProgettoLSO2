@@ -33,7 +33,7 @@ public class UtenteController {
 
 
         //richiesta
-        connessioneController.writeOnOutput("getUtente$$"+username+"$$"+password);
+        connessioneController.writeOnOutput( "getUtente$$"+username+"$$"+password);
 
 
         //ricezione
@@ -41,15 +41,14 @@ public class UtenteController {
 
         System.out.println(result);
 
-
-        // conversione da json ad oggetto
-        utente = jsonToUtente(result);
-
-
         connessioneController.closeConnection();
 
 
-        return utente;
+        if(result.equals("true"))
+            return new Utente(username, password);
+        else
+            return null;
+
     }
 
     public void registraUtente(Utente utente){
