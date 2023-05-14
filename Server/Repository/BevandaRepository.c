@@ -14,7 +14,7 @@ void getBevande(char* utente, char* result){
     if (PQresultStatus(res) != PGRES_TUPLES_OK){
         printf("No data retrieved\n");
         PQclear(res);
-        return NULL;
+        return;
     }
 
     int rows = PQntuples(res), columns = PQnfields(res);

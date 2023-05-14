@@ -9,6 +9,8 @@ void* ordineController(){
         pthread_mutex_lock(&ordineMutex);
         
         if(!cqueue_is_empty(ordineQueue)){
+
+            result = memset(result, 0, sizeof(char)*DIMBUFF);
             
             msg  = (char*)cqueue_pop(ordineQueue);
             socket  = (int)cqueue_pop(ordineQueue);
@@ -17,11 +19,21 @@ void* ordineController(){
             command = strtok(NULL, "$$");
 
             if(strcmp(command, "getCarrello") == 0)
-                getOrdini(strtok(NULL, "$$"), result);
+                getCarrello(strtok(NULL, "$$"), result);
+
+            if(strcmp(command, "addBevandaToOrdine") == 0){
+                char* bevanda = strtok(NULL, "$$");
+                char* username = strtok(NULL, "$$");
+                addBevandaToOrdine(bevanda, username);
+            }
+
+            if(strcmp(command, "chiudiOrdine") == 0)
+                chiudiOrdine(strtok(NULL, "$$"));
 
             
             write(socket, result, DIMBUFF);
         }
+
         pthread_mutex_unlock(&ordineMutex);
     }
 

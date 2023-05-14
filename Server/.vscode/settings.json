@@ -25,6 +25,8 @@
         "utenterepository.h": "c",
         "server.h": "c",
         "cqueue.h": "c",
-        "bevanda.h": "c"
+        "bevanda.h": "c",
+        "database.h": "c",
+        "libpq-fe.h": "c"
     }
 }

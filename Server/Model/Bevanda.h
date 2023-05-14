@@ -2,6 +2,7 @@
 #define BEVANDA_H
 
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct bevanda{
     char* nome;

@@ -9,7 +9,9 @@ void* bevandaController(){
         pthread_mutex_lock(&bevandaMutex);
         
         if(!cqueue_is_empty(bevandaQueue)){
-            
+
+            result = memset(result, 0, sizeof(char)*DIMBUFF);
+
             msg  = (char*)cqueue_pop(bevandaQueue);
             socket  = (int)cqueue_pop(bevandaQueue);
             pthread_mutex_unlock(&bevandaMutex);

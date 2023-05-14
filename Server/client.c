@@ -40,14 +40,18 @@ int main()
 
 
 	// function for chat
-	// char buff[MAX] = "utente$$getUtente$$Dario$$123";
-	char buff[MAX] = "utente$$getUtente$$Dario$$$123";
+	// char buff[MAX] = "ordine$$getCarrello$$Dario$$123";
+	// char buff[MAX] = "utente$$registrazione$$Mario$$123";
+	// char buff[MAX] = "utente$$getUtente$$Mario$$123";
+	// char buff[MAX] = "ordine$$addBevandaToOrdine$$coca$$Mario";
+	char buff[MAX] = "ordine$$chiudiOrdine$$Mario";
+
 
 	write(sockfd, buff, sizeof(buff));
 
 	    // lettura della risposta del server
     read(sockfd, buff, sizeof(buff));
-    printf("Ho ricevuto %s\n", buff);
+    printf("Ho ricevuto: %s\n", buff);
 	close(sockfd);
 
 	return 0;
