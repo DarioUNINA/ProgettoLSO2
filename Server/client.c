@@ -42,7 +42,10 @@ int main()
 	// function for chat
 	// char buff[MAX] = "ordine$$getCarrello$$Dario$$123";
 	// char buff[MAX] = "utente$$registrazione$$Mario$$123";
-	char buff[MAX] = "utente$$getUtente$$Mario$$123";
+	// char buff[MAX] = "utente$$getUtente$$Mario$$123";
+	// char buff[MAX] = "ordine$$addBevandaToOrdine$$coca$$Mario";
+	char buff[MAX] = "ordine$$chiudiOrdine$$Mario";
+
 
 	write(sockfd, buff, sizeof(buff));
 

@@ -21,6 +21,15 @@ void* ordineController(){
             if(strcmp(command, "getCarrello") == 0)
                 getCarrello(strtok(NULL, "$$"), result);
 
+            if(strcmp(command, "addBevandaToOrdine") == 0){
+                char* bevanda = strtok(NULL, "$$");
+                char* username = strtok(NULL, "$$");
+                addBevandaToOrdine(bevanda, username);
+            }
+
+            if(strcmp(command, "chiudiOrdine") == 0)
+                chiudiOrdine(strtok(NULL, "$$"));
+
             
             write(socket, result, DIMBUFF);
         }

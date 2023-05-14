@@ -27,5 +27,9 @@
 ---json bevande
 
 --Aggiungere Bevanda a un ordine
----addBevanda$$id_ordine$$bevanda
+---addBevandatoOrdine$$bevanda$$utente
 ---non ritorna nulla (mettiamo anche i duplicati senza quantita' non ci interessa)
+
+--Chiudere Ordine
+---chiudiOrdine$$utente
+---non ritorna nulla

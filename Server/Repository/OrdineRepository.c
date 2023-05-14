@@ -23,3 +23,83 @@ void getCarrello(char* username, char* result){
     }
 
 }
+
+
+void addBevandaToOrdine(char* bevanda, char* username){
+    char* strings[6];
+    strings[0] = " select id_ordine from ordine where utente = '";
+    strings[1] = username;
+    strings[2] = "' and chiuso = false";
+    strings[3] = NULL;
+
+    PGresult* res = runQuery(strings);
+
+    if (PQresultStatus(res) != PGRES_TUPLES_OK){
+        printf("No data retrieved\n");
+        PQclear(res);
+    }
+
+    int id_ordine = atoi(PQgetvalue(res, 0, 0));
+
+    strings[0] = "insert into ordinazione values (";
+    sprintf(strings[1], "%d", id_ordine);
+    strings[2] = ", '";
+    strings[3] = bevanda;
+    strings[4] = "')";
+    strings[5] = NULL;
+
+    res = runQuery(strings);
+
+        if (PQresultStatus(res) != PGRES_TUPLES_OK){
+        printf("No data retrieved\n");
+        PQclear(res);
+    }else
+        printf("Bevanda aggiunta a ordine\n");
+
+
+}
+
+void chiudiOrdine(char* username){
+    char* strings[4];
+    strings[0] = "select id_ordine from ordine where utente = '";
+    strings[1] = username;
+    strings[2] = "' and chiuso = false";
+    strings[3] = NULL;
+
+    PGresult* res = runQuery(strings);
+
+    if (PQresultStatus(res) != PGRES_TUPLES_OK){
+        printf("No data retrieved\n");
+        PQclear(res);
+    }
+
+    // int id_ordine = atoi(PQgetvalue(res, 0, 0));
+
+    strings[0] = "update ordine set chiuso = true where id_ordine = ";
+    // sprintf(strings[1], "%d", id_ordine);
+    strings[1] = PQgetvalue(res, 0, 0);
+    strings[2] = NULL;
+
+    res = runQuery(strings);
+
+    if (PQresultStatus(res) != PGRES_COMMAND_OK){
+        printf("Ordine non chiuso\n");
+        PQclear(res);
+    }else{
+        printf("Ordine chiuso, username vale %s\n", username);
+
+        strings[0] = "insert into ordine (id_ordine, utente, chiuso) values (nextval('id_ordine_seq'), '";
+        strings[1] = username;
+        strings[2] = "', false)";
+        strings[3] = NULL;
+
+        res = runQuery(strings);
+
+        if (PQresultStatus(res) != PGRES_COMMAND_OK){
+            printf("Carrello non creato\n");
+            PQclear(res);
+        }else
+            printf("Carrello creato\n");
+    }
+
+}
