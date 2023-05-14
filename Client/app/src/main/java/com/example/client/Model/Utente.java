@@ -2,24 +2,24 @@ package com.example.client.Model;
 
 public class Utente {
 
-    private String email;
+    private String username;
     private String password;
 
     public Utente(){
 
     }
 
-    public Utente(String email, String password) {
-        this.email = email;
+    public Utente(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String email) {
+        this.username = username;
     }
 
     public String getPassword() {

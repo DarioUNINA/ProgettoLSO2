@@ -24,7 +24,7 @@
         >
 
         <EditText
-            android:id="@+id/edtUsername"
+            android:id="@+id/edtUsernameLogIn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:drawableLeft="@drawable/baseline_person_24"
@@ -60,7 +60,7 @@
         >
 
         <EditText
-            android:id="@+id/edtPassword"
+            android:id="@+id/edtPasswordLogIn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:drawableLeft="@drawable/baseline_key_24"
