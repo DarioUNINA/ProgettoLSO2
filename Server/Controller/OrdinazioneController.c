@@ -10,6 +10,8 @@ void* ordinazioneController(){
         pthread_mutex_lock(&ordinazioneMutex);
         
         if(!cqueue_is_empty(ordinazioneQueue)){
+
+            result = memset(result, 0, sizeof(char)*DIMBUFF);
             
             msg  = (char*)cqueue_pop(ordinazioneQueue);
             socket  = (int)cqueue_pop(ordinazioneQueue);
@@ -22,11 +24,13 @@ void* ordinazioneController(){
             // }
             
             write(socket, result, DIMBUFF);
+
         }
         pthread_mutex_unlock(&ordinazioneMutex);
     }
 
     free(command);
     free(result);
+
     pthread_exit(NULL);
 }

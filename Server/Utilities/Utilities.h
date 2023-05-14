@@ -1,7 +1,7 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-#define DIMBUFF 200
+#define DIMBUFF 1500
 
 #include "postgresql/libpq-fe.h"
 #include "cqueue.h"

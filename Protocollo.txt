@@ -1,9 +1,12 @@
 -UtenteController(utente$$)
 
---LogIn/Registrazione
+--LogIn
 ---getUtente$$username$$password
 ---true/false 
 
+--Registrazione
+---registrazione$$username$$password
+---ture/false
 
 
 

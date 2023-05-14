@@ -7,6 +7,7 @@ extern PGconn* connection;
 extern pthread_mutex_t connectionMutex;
 
 void getUtente(char* username, char* password, char* result);
+void registrazione(char* username, char* password, char* result);
 
 
 #endif
