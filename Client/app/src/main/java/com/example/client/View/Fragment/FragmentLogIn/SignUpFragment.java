@@ -1,4 +1,4 @@
-package com.example.client.View.Fragment.FragmentLogSign;
+package com.example.client.View.Fragment.FragmentLogIn;
 
 import android.os.Bundle;
 

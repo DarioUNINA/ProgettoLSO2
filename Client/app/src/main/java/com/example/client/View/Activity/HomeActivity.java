@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.client.Controller.BevandaController;
+import com.example.client.Controller.OrdineController;
 import com.example.client.Controller.UtenteController;
 import com.example.client.Model.Bevanda;
 import com.example.client.Model.Utente;
@@ -31,9 +32,13 @@ public class HomeActivity extends AppCompatActivity {
 
     private ArrayList<Bevanda> bevande;
 
+    private ArrayList<Bevanda> carrello;
+
     private UtenteController utenteController = new UtenteController();
 
     private BevandaController bevandaController = new BevandaController();
+
+    private OrdineController ordineController = new OrdineController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,15 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         utente = getIntent().getStringExtra("utenteUsername");
-        bevande = bevandaController.getBevande(utente);
+
+        new Thread(()->{
+
+            bevande = bevandaController.getBevande(utente);
+            carrello = ordineController.getCarrello(utente);
+
+        }).start();
+
+
 
 
         tabLayout = findViewById(R.id.tabLayoutHome);
@@ -99,4 +112,5 @@ public class HomeActivity extends AppCompatActivity {
 //        fragmentTransaction.commit();
 
     }
+
 }

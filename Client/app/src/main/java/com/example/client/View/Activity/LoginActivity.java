@@ -10,9 +10,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.client.View.Fragment.FragmentLogSign.LogInFragment;
+import com.example.client.View.Fragment.FragmentLogIn.LogInFragment;
 import com.example.client.R;
-import com.example.client.View.Fragment.FragmentLogSign.SignUpFragment;
+import com.example.client.View.Fragment.FragmentLogIn.SignUpFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -140,5 +140,10 @@ public class LoginActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
+    }
+
+    @Override
+    public void onBackPressed(){
+        btnExit.callOnClick();
     }
 }

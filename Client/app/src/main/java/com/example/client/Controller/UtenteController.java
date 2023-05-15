@@ -26,7 +26,6 @@ public class UtenteController {
     public Utente getUtente(String username, String password){
 
 
-        Utente utente = null;
         String result = null;
 
 //        connessioneController.startConnection();

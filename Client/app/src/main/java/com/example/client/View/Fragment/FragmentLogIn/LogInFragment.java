@@ -1,4 +1,4 @@
-package com.example.client.View.Fragment.FragmentLogSign;
+package com.example.client.View.Fragment.FragmentLogIn;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -101,6 +101,7 @@ public class LogInFragment extends Fragment {
                         utente = utenteController.getUtente(username, password);
 
                     if(utente != null){
+                        System.out.println("HO TROVATO L' UTENTE\n\n\n");
                         Intent intent = new Intent(getContext(), HomeActivity.class);
                         intent.putExtra("utenteUsername", utente.getUsername());
                         startActivity(intent);
