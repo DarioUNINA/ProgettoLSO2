@@ -22,18 +22,4 @@ Insert into bevanda(nome, descrizione, prezzo, categoria) values ('Viaggio ai Tr
 
 
 --Ordine
-Insert into ordine(id_ordine, utente, chiuso) values ('nextval('id_ordine_seq')', 'Dario', true);
-Insert into ordine(id_ordine, utente, chiuso) values ('nextval('id_ordine_seq')', 'Dario', false);
-Insert into ordine(id_ordine, utente, chiuso) values ('nextval('id_ordine_seq')', 'Renato', false);
-Insert into ordine(id_ordine, utente, chiuso) values ('nextval('id_ordine_seq')', 'Marco', true);
-
-
---Ordinazione
-Insert into ordinazione(id_ordine, bevanda) values ('1', 'Tris di frutti di bosco');
-Insert into ordinazione(id_ordine, bevanda) values ('1', 'Negroni');
-Insert into ordinazione(id_ordine, bevanda) values ('1', 'Mojito');
-Insert into ordinazione(id_ordine, bevanda) values ('2', 'Black Russian');
-Insert into ordinazione(id_ordine, bevanda) values ('2', 'Martini');
-Insert into ordinazione(id_ordine, bevanda) values ('3', 'Spritz');
-Insert into ordinazione(id_ordine, bevanda) values ('4', 'Questione di equilibrio');
-Insert into ordinazione(id_ordine, bevanda) values ('4', 'Viaggio ai Tropici');
+Insert into ordine(id_ordine, utente, chiuso) values ('nextval('id_categoria_seq')', '123');
