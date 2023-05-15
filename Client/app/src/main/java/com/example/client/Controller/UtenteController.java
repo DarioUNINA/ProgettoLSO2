@@ -29,19 +29,21 @@ public class UtenteController {
         Utente utente = null;
         String result = null;
 
-        connessioneController.startConnection();
+//        connessioneController.startConnection();
+//
+//
+//        //richiesta
+//        connessioneController.writeOnOutput( "getUtente$$"+username+"$$"+password);
+//
+//
+//        //ricezione
+//        result = connessioneController.readFromInput();
+//
+//        System.out.println(result);
+//
+//        connessioneController.closeConnection();
 
-
-        //richiesta
-        connessioneController.writeOnOutput( "getUtente$$"+username+"$$"+password);
-
-
-        //ricezione
-        result = connessioneController.readFromInput();
-
-        System.out.println(result);
-
-        connessioneController.closeConnection();
+        result = "true";
 
 
         if(result.equals("true"))
@@ -51,14 +53,28 @@ public class UtenteController {
 
     }
 
-    public void registraUtente(Utente utente){
+    public Utente registraUtente(String username, String password){
+
+        String result = null;
 
         connessioneController.startConnection();
 
+
         //richiesta
-        connessioneController.writeOnOutput("registraUtente$$"+utenteToJson(utente));
+        connessioneController.writeOnOutput( "registrazione$$"+username+"$$"+password);
+
+
+        //ricezione
+        result = connessioneController.readFromInput();
+
+        System.out.println(result);
 
         connessioneController.closeConnection();
+
+        if(result.equals("true"))
+            return new Utente(username, password);
+        else
+            return null;
 
     }
 
