@@ -28,22 +28,15 @@ public class UtenteController {
 
         String result = null;
 
-//        connessioneController.startConnection();
-//
-//
-//        //richiesta
-//        connessioneController.writeOnOutput( "getUtente$$"+username+"$$"+password);
-//
-//
-//        //ricezione
-//        result = connessioneController.readFromInput();
-//
-//        System.out.println(result);
-//
-//        connessioneController.closeConnection();
+        connessioneController.startConnection();
 
-        result = "true";
+        //richiesta
+        connessioneController.writeOnOutput( "utente$$getUtente$$"+username+"$$"+password + "$$");
 
+        //ricezione
+        result = connessioneController.readFromInput();
+
+        connessioneController.closeConnection();
 
         if(result.equals("true"))
             return new Utente(username, password);
@@ -60,7 +53,7 @@ public class UtenteController {
 
 
         //richiesta
-        connessioneController.writeOnOutput( "registrazione$$"+username+"$$"+password);
+        connessioneController.writeOnOutput( "utente$$registrazione$$"+username+"$$"+password+ "$$");
 
 
         //ricezione
