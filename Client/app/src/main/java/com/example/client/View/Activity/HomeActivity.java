@@ -104,13 +104,81 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
-
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.constraintHome, , null);
-//        fragmentTransaction.commit();
-
     }
+
+    public MenuFragment getMenuFragment() {
+        return menuFragment;
+    }
+
+    public void setMenuFragment(MenuFragment menuFragment) {
+        this.menuFragment = menuFragment;
+    }
+
+    public SettingFragment getSettingFragment() {
+        return settingFragment;
+    }
+
+    public void setSettingFragment(SettingFragment settingFragment) {
+        this.settingFragment = settingFragment;
+    }
+
+    public CartFragment getCartFragment() {
+        return cartFragment;
+    }
+
+    public void setCartFragment(CartFragment cartFragment) {
+        this.cartFragment = cartFragment;
+    }
+
+    public String getUtente() {
+        return utente;
+    }
+
+    public void setUtente(String utente) {
+        this.utente = utente;
+    }
+
+    public ArrayList<Bevanda> getBevande() {
+        return bevande;
+    }
+
+    public void setBevande(ArrayList<Bevanda> bevande) {
+        this.bevande = bevande;
+    }
+
+    public ArrayList<Bevanda> getCarrello() {
+        return carrello;
+    }
+
+    public void setCarrello(ArrayList<Bevanda> carrello) {
+        this.carrello = carrello;
+    }
+
+    public UtenteController getUtenteController() {
+        return utenteController;
+    }
+
+    public void setUtenteController(UtenteController utenteController) {
+        this.utenteController = utenteController;
+    }
+
+    public BevandaController getBevandaController() {
+        return bevandaController;
+    }
+
+    public void setBevandaController(BevandaController bevandaController) {
+        this.bevandaController = bevandaController;
+    }
+
+    public OrdineController getOrdineController() {
+        return ordineController;
+    }
+
+    public void setOrdineController(OrdineController ordineController) {
+        this.ordineController = ordineController;
+    }
+
+    @Override
+    public void onBackPressed(){}
 
 }
