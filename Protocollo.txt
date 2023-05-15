@@ -30,6 +30,10 @@
 ---addBevandatoOrdine$$bevanda$$utente
 ---non ritorna nulla (mettiamo anche i duplicati senza quantita' non ci interessa)
 
+--Rimuovere bevanda da un ordine
+---removeBevandaFromOrdine$$bevanda$$utente
+---non ritorna nulla
+
 --Chiudere Ordine
 ---chiudiOrdine$$utente
 ---non ritorna nulla

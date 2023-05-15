@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".View.Fragment.FragmentLogSign.LogInFragment">
+    tools:context=".View.Fragment.FragmentLogIn.LogInFragment">
 
 
     <com.google.android.material.card.MaterialCardView
@@ -24,7 +24,7 @@
         >
 
         <EditText
-            android:id="@+id/edtUsername"
+            android:id="@+id/edtUsernameLogIn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:drawableLeft="@drawable/baseline_person_24"
@@ -60,7 +60,7 @@
         >
 
         <EditText
-            android:id="@+id/edtPassword"
+            android:id="@+id/edtPasswordLogIn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:drawableLeft="@drawable/baseline_key_24"
@@ -108,45 +108,7 @@
     </com.google.android.material.card.MaterialCardView>
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/line_1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.70"
-        android:rotation="90"
-        app:layout_constraintHorizontal_bias="0.25"
-        />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="OR"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        app:layout_constraintVertical_bias="0.66"
-        />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/line_1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.70"
-        android:rotation="90"
-        app:layout_constraintHorizontal_bias="0.75"
-        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

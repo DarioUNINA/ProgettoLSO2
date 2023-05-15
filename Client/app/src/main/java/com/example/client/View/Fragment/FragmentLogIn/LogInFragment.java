@@ -1,4 +1,4 @@
-package com.example.client.View.Fragment.FragmentLogSign;
+package com.example.client.View.Fragment.FragmentLogIn;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
+import com.example.client.Controller.UtenteController;
+import com.example.client.Model.Utente;
 import com.example.client.R;
 import com.example.client.View.Activity.HomeActivity;
 import com.google.android.material.card.MaterialCardView;
@@ -22,6 +25,9 @@ import com.google.android.material.card.MaterialCardView;
 public class LogInFragment extends Fragment {
 
     private MaterialCardView materialBtnLog, materialUser, materialPwd;
+    private EditText edtUsername, edtPassword;
+
+    private UtenteController utenteController = new UtenteController();
 
     private AppCompatButton btnLogIn;
 
@@ -73,15 +79,38 @@ public class LogInFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.fragment_log_in, container, false);
 
+
+
         materialBtnLog = rootView.findViewById(R.id.materialBtnLog);
         materialPwd = rootView.findViewById(R.id.materialPwd);
         materialUser = rootView.findViewById(R.id.materialUser);
+        edtUsername = rootView.findViewById(R.id.edtUsernameLogIn);
+        edtPassword = rootView.findViewById(R.id.edtPasswordLogIn);
         btnLogIn = rootView.findViewById(R.id.btnLogIn);
 
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), HomeActivity.class));
+
+                new Thread(()->{
+                    String username = edtUsername.getText().toString();
+                    String password = edtPassword.getText().toString();
+                    Utente utente = null;
+
+                    if(!(username.isEmpty()) && !(password.isEmpty()))
+                        utente = utenteController.getUtente(username, password);
+
+                    if(utente != null){
+                        System.out.println("HO TROVATO L' UTENTE\n\n\n");
+                        Intent intent = new Intent(getContext(), HomeActivity.class);
+                        intent.putExtra("utenteUsername", utente.getUsername());
+                        startActivity(intent);
+                    } else {
+                        System.out.println("Utente non trovato");
+                    }
+                }).start();
+
+                //startActivity(new Intent(getActivity(), HomeActivity.class));
             }
         });
 
@@ -103,4 +132,5 @@ public class LogInFragment extends Fragment {
 
         return rootView;
     }
+
 }

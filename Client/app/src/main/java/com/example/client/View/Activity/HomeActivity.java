@@ -7,11 +7,18 @@ import androidx.fragment.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import com.example.client.Controller.BevandaController;
+import com.example.client.Controller.OrdineController;
+import com.example.client.Controller.UtenteController;
+import com.example.client.Model.Bevanda;
+import com.example.client.Model.Utente;
 import com.example.client.View.Fragment.FragmentHome.CartFragment;
 import com.example.client.R;
 import com.example.client.View.Fragment.FragmentHome.MenuFragment;
 import com.example.client.View.Fragment.FragmentHome.SettingFragment;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -21,10 +28,33 @@ public class HomeActivity extends AppCompatActivity {
     private SettingFragment settingFragment = new SettingFragment();
     private CartFragment cartFragment = new CartFragment();
 
+    private String utente;
+
+    private ArrayList<Bevanda> bevande;
+
+    private ArrayList<Bevanda> carrello;
+
+    private UtenteController utenteController = new UtenteController();
+
+    private BevandaController bevandaController = new BevandaController();
+
+    private OrdineController ordineController = new OrdineController();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        utente = getIntent().getStringExtra("utenteUsername");
+
+        new Thread(()->{
+
+            bevande = bevandaController.getBevande(utente);
+            carrello = ordineController.getCarrello(utente);
+
+        }).start();
+
+
 
 
         tabLayout = findViewById(R.id.tabLayoutHome);
@@ -82,4 +112,5 @@ public class HomeActivity extends AppCompatActivity {
 //        fragmentTransaction.commit();
 
     }
+
 }

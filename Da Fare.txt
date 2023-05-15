@@ -1,8 +1,8 @@
-1) Popolamento DB
-
-
-Funzioni:
-1)Registrazione e LogIn no stringa vuota e doppio dollaro
-2)Ottenere bevande
-3)Acquisto e pagamento bevande da carrello
-4)suggerimenti bevande
+1) Controllare Popolamento DB
+2)Controllare doppio dollaro in registrazione
+3)Fixare Socket
+4)Unire le funzioni per l'invio di una richiesta dal client in un' unica funzione
+5)Creare gli adapter e riempire le liste
+6)Correggere smoothie e drink in menu (manca la linea sotto come per login e registrazione)
+7)Gestire aggiunta e rimozione a carrello
+8)Gestire calcolo del totale del carrello e Chiusura del carrello (richiesta la password magari)

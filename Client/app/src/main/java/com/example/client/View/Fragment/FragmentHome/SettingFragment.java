@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 
 import com.example.client.R;
 import com.example.client.View.Activity.LoginActivity;
-import com.example.client.View.Fragment.FragmentLogSign.LogInFragment;
 
 /**
  * A simple {@link Fragment} subclass.
