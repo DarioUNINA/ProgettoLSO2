@@ -39,7 +39,8 @@ void* utenteController(){
                 }
             }
 
-            write(socket, result, DIMBUFF);
+            write(socket, result, strlen(result));
+            close(socket);
 
         }
         pthread_mutex_unlock(&utenteMutex);

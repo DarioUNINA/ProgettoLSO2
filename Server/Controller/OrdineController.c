@@ -27,11 +27,18 @@ void* ordineController(){
                 addBevandaToOrdine(bevanda, username);
             }
 
+            if(strcmp(command, "removeBevandaFromOrdine") == 0){
+                char* bevanda = strtok(NULL, "$$");
+                char* username = strtok(NULL, "$$");
+                removeBevandaFromOrdine(bevanda, username);
+            }
+
             if(strcmp(command, "chiudiOrdine") == 0)
                 chiudiOrdine(strtok(NULL, "$$"));
 
             
-            write(socket, result, DIMBUFF);
+            write(socket, result, strlen(result));
+            close(socket);
         }
 
         pthread_mutex_unlock(&ordineMutex);

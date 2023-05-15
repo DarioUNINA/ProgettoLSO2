@@ -19,6 +19,8 @@ void receiveData(int mySocket){
 
             read(clientSocket, msg, DIMBUFF);
 
+            printf("Ho ricevuto: %s\n", msg);
+
             char* command = strtok(msg, "$$");
 
             if(strcmp(command, "bevanda")==0){

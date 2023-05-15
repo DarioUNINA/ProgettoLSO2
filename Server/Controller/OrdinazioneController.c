@@ -19,11 +19,9 @@ void* ordinazioneController(){
                 
             command = strtok(NULL, "$$");
 
-            // if(strcmp(command, "SearchUser") == 0){ //scrivere comandi
-            //     result = SearchUser(msg);
-            // }
             
-            write(socket, result, DIMBUFF);
+            write(socket, result, strlen(result));
+            close(socket);
 
         }
         pthread_mutex_unlock(&ordinazioneMutex);

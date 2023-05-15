@@ -11,6 +11,8 @@ void getCarrello(char* username, char* result);
 
 void addBevandaToOrdine(char* bevanda, char* username);
 
+void removeBevandaFromOrdine(char* bevanda, char* username);
+
 void chiudiOrdine(char* username);
 
 

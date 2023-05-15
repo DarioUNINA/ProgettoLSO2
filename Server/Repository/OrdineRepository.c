@@ -39,10 +39,9 @@ void addBevandaToOrdine(char* bevanda, char* username){
         PQclear(res);
     }
 
-    int id_ordine = atoi(PQgetvalue(res, 0, 0));
 
     strings[0] = "insert into ordinazione values (";
-    sprintf(strings[1], "%d", id_ordine);
+    strings[1] = PQgetvalue(res, 0, 0);
     strings[2] = ", '";
     strings[3] = bevanda;
     strings[4] = "')";
@@ -55,6 +54,39 @@ void addBevandaToOrdine(char* bevanda, char* username){
         PQclear(res);
     }else
         printf("Bevanda aggiunta a ordine\n");
+
+
+}
+
+void removeBevandaFromOrdine(char* bevanda, char* username){
+    char* strings[6];
+    strings[0] = " select id_ordine from ordine where utente = '";
+    strings[1] = username;
+    strings[2] = "' and chiuso = false";
+    strings[3] = NULL;
+
+    PGresult* res = runQuery(strings);
+
+    if (PQresultStatus(res) != PGRES_TUPLES_OK){
+        printf("No data retrieved\n");
+        PQclear(res);
+    }
+
+
+    strings[0] = "delete from ordinazione where id_ordine =";
+    strings[1] = PQgetvalue(res, 0, 0);
+    strings[2] = " and bevanda = '";
+    strings[3] = bevanda;
+    strings[4] = "'";
+    strings[5] = NULL;
+
+    res = runQuery(strings);
+
+        if (PQresultStatus(res) != PGRES_TUPLES_OK){
+        printf("No data retrieved\n");
+        PQclear(res);
+    }else
+        printf("Bevanda rimossa dall'ordine\n");
 
 
 }
@@ -73,10 +105,7 @@ void chiudiOrdine(char* username){
         PQclear(res);
     }
 
-    // int id_ordine = atoi(PQgetvalue(res, 0, 0));
-
     strings[0] = "update ordine set chiuso = true where id_ordine = ";
-    // sprintf(strings[1], "%d", id_ordine);
     strings[1] = PQgetvalue(res, 0, 0);
     strings[2] = NULL;
 

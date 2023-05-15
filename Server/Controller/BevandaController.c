@@ -22,7 +22,8 @@ void* bevandaController(){
                 getBevande(strtok(NULL, "$$"), result);
             }
 
-            write(socket, result, DIMBUFF);
+            write(socket, result, strlen(result));
+            close(socket);
         }
         pthread_mutex_unlock(&bevandaMutex);
     }
