@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.client.R;
+import com.example.client.View.Activity.HomeActivity;
 import com.example.client.View.Adapter.CocktailsAdapter;
 import com.example.client.View.Adapter.SmoothieAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -90,18 +91,18 @@ public class MenuFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Cocktails"));
         tabLayout.addTab(tabLayout.newTab().setText("Smoothie"));
         tabLayout.setTabGravity(tabLayout.GRAVITY_FILL);
-
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FF6E01"));
 
-//        FragmentManager fragmentManager =   getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.constraintBevande, , null);
-//        fragmentTransaction.commit();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerViewBevande.setLayoutManager(linearLayoutManager);
+
+        cocktailsAdapter = new CocktailsAdapter(((HomeActivity)getActivity()).getBevande(), recyclerViewBevande.getContext());
         recyclerViewBevande.setAdapter(cocktailsAdapter);
+        cocktailsAdapter.notifyDataSetChanged();
+
+        smoothieAdapter = new SmoothieAdapter(((HomeActivity)getActivity()).getBevande(), recyclerViewBevande.getContext());
 
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -110,9 +111,11 @@ public class MenuFragment extends Fragment {
                 if(tab.getPosition() == 0){
                     recyclerViewBevande.setLayoutManager(linearLayoutManager);
                     recyclerViewBevande.setAdapter(cocktailsAdapter);
+                    cocktailsAdapter.notifyDataSetChanged();
                 }else {
                     recyclerViewBevande.setLayoutManager(linearLayoutManager);
                     recyclerViewBevande.setAdapter(smoothieAdapter);
+                    smoothieAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -127,10 +130,23 @@ public class MenuFragment extends Fragment {
             }
         });
 
-
-
-
-
         return rootView;
+    }
+
+
+    public CocktailsAdapter getCocktailsAdapter() {
+        return cocktailsAdapter;
+    }
+
+    public void setCocktailsAdapter(CocktailsAdapter cocktailsAdapter) {
+        this.cocktailsAdapter = cocktailsAdapter;
+    }
+
+    public SmoothieAdapter getSmoothieAdapter() {
+        return smoothieAdapter;
+    }
+
+    public void setSmoothieAdapter(SmoothieAdapter smoothieAdapter) {
+        this.smoothieAdapter = smoothieAdapter;
     }
 }

@@ -51,8 +51,8 @@ public class ConnessioneController {
         String in = null;
 
         try{
-            System.out.println("sto nel try catch \n\n");
             in = input.readLine();
+            System.out.println("HO RICEVUTO " + in + "\n\n\n");
         } catch (IOException e){
             e.printStackTrace();
         }

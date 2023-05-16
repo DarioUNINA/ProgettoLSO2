@@ -7,16 +7,21 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.client.Controller.OrdineController;
 import com.example.client.Model.Bevanda;
 import com.example.client.R;
 import com.example.client.View.Activity.HomeActivity;
 import com.example.client.View.Activity.LoginActivity;
+import com.example.client.View.Adapter.CarrelloAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,8 +32,10 @@ public class CartFragment extends Fragment {
 
 
     private TextView totale;
-    private AppCompatButton conferma;
+    private FloatingActionButton conferma;
 
+    private RecyclerView recyclerView;
+    private CarrelloAdapter carrelloAdapter;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -79,6 +86,16 @@ public class CartFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_cart, container, false);
 
+        recyclerView = rootView.findViewById(R.id.recyclerViewCart);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        carrelloAdapter = new CarrelloAdapter(((HomeActivity)getActivity()).getCarrello(), getContext(), this);
+        recyclerView.setAdapter(carrelloAdapter);
+        carrelloAdapter.notifyDataSetChanged();
+
         totale = rootView.findViewById(R.id.prezzoTxt);
         conferma = rootView.findViewById(R.id.btnPagamento);
 
@@ -92,7 +109,14 @@ public class CartFragment extends Fragment {
                         .setPositiveButton(android.R.string.yes,  new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                //apri il dialog della richiesta password
+                                new Thread(()->{
+                                    OrdineController ordineController = new OrdineController();
+                                    ordineController.chiudiCarrello(((HomeActivity)getActivity()).getUtente());
+                                }).start();
+                                ((HomeActivity)getActivity()).getCarrello().clear();
+                                carrelloAdapter.notifyDataSetChanged();
+                                updateTotale();
+
                             }
                         }).create().show();
             }

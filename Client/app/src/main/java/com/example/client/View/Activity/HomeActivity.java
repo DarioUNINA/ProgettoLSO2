@@ -12,6 +12,8 @@ import com.example.client.Controller.OrdineController;
 import com.example.client.Controller.UtenteController;
 import com.example.client.Model.Bevanda;
 import com.example.client.Model.Utente;
+import com.example.client.View.Adapter.CocktailsAdapter;
+import com.example.client.View.Adapter.SmoothieAdapter;
 import com.example.client.View.Fragment.FragmentHome.CartFragment;
 import com.example.client.R;
 import com.example.client.View.Fragment.FragmentHome.MenuFragment;
@@ -26,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private MenuFragment menuFragment = new MenuFragment();
     private SettingFragment settingFragment = new SettingFragment();
-    private CartFragment cartFragment = new CartFragment();
+    private CartFragment cartFragment = new CartFragment();;
 
     private String utente;
 
@@ -52,6 +54,12 @@ public class HomeActivity extends AppCompatActivity {
             bevande = bevandaController.getBevande(utente);
             carrello = ordineController.getCarrello(utente);
 
+            menuFragment.setCocktailsAdapter(new CocktailsAdapter(bevande, menuFragment.getContext()));
+            menuFragment.setSmoothieAdapter(new SmoothieAdapter(bevande,menuFragment.getContext()));
+
+            menuFragment.getCocktailsAdapter().notifyDataSetChanged();
+            menuFragment.getSmoothieAdapter().notifyDataSetChanged();
+
         }).start();
 
 
@@ -70,6 +78,7 @@ public class HomeActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.constraintHome, menuFragment, null);
         fragmentTransaction.commit();
+
 
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

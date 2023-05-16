@@ -20,6 +20,11 @@ public class OrdineController {
         gson = new Gson();
     }
 
+    public void chiudiCarrello(String utente){
+        connessioneController.startConnection();
+        connessioneController.writeOnOutput("ordine$$chiudiOrdine$$"+utente+"$$");
+        connessioneController.closeConnection();
+    }
 
 
     public ArrayList<Bevanda> getCarrello(String utente){
@@ -47,6 +52,8 @@ public class OrdineController {
                 bevande.add(bevanda);
         }
 
+        connessioneController.closeConnection();
+
         return bevande;
     }
 
@@ -62,11 +69,11 @@ public class OrdineController {
     }
 
 
-    public void rimuoviDaCarrello(String utente, Bevanda bevanda){
+    public void rimuoviDaCarrello(String utente, String bevanda){
 
         connessioneController.startConnection();
 
-        connessioneController.writeOnOutput("ordine$$removeBevandaFromOrdine"+bevanda.getNome()+"$$"+utente+ "$$");
+        connessioneController.writeOnOutput("ordine$$removeBevandaFromOrdine$$"+bevanda+"$$"+utente+ "$$");
 
         connessioneController.closeConnection();
 

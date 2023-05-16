@@ -7,23 +7,19 @@ public class Bevanda {
 
     private String descrizione;
     private Float prezzo;
-    private String tipo;
+    private String categoria;
 
     public Bevanda(){
 
     }
 
-    public Bevanda(String nome, Float prezzo) {
+    public Bevanda(String nome, String descrizione, String categoria, Float prezzo) {
         this.nome = nome;
         this.prezzo = prezzo;
+        this.categoria = categoria;
+        this.descrizione = descrizione;
     }
 
-    public Bevanda(Integer id, String nome,String descrizione, Float prezzo, String tipo) {
-        this.nome = nome;
-        this.descrizione = descrizione;
-        this.prezzo = prezzo;
-        this.tipo = tipo;
-    }
 
     public String getNome() {
         return nome;
@@ -49,12 +45,12 @@ public class Bevanda {
         this.prezzo = prezzo;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
 

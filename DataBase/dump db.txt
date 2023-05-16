@@ -95,15 +95,7 @@ ADD CONSTRAINT ordinazione_bevanda_fk FOREIGN KEY (bevanda)
     ON UPDATE CASCADE
     ON DELETE CASCADE;
     
-    
-
---Sequences
-CREATE SEQUENCE id_ordine_seq
-START 1
-INCREMENT 1
-OWNED BY ordine.id_ordine;
-
-    
+   
 
   
   

@@ -16,7 +16,7 @@ Insert into bevanda(nome, descrizione, prezzo, categoria) values ('Tris di frutt
 Insert into bevanda(nome, descrizione, prezzo, categoria) values ('Banana e fragola', 'la dolcezza naturale della fragola si unisce alla consistenza morbida e vellutata della banana', '5', 'smoothie');
 Insert into bevanda(nome, descrizione, prezzo, categoria) values ('Questione di equilibrio', 'yogurt greco, burro di arachidi, frutta e verdura.', '6.50', 'smoothie');
 Insert into bevanda(nome, descrizione, prezzo, categoria) values ('Burro di arachidi e cioccolato', ' smoothie a base di cioccolato, banana e burro di arachidi, una vera e propria coccola dolce e appagante', '5', 'smoothie');
-Insert into bevanda(nome, descrizione, prezzo, categoria) values ('Cremoso al caffè', 'smoothie a base di caffè con l'aggiunta dello yogurt greco lo rende super cremoso', '4', 'smoothie');
+Insert into bevanda(nome, descrizione, prezzo, categoria) values ('Cremoso al caffè', 'smoothie a base di caffè con aggiunta dello yogurt greco lo rende super cremoso', '4', 'smoothie');
 Insert into bevanda(nome, descrizione, prezzo, categoria) values ('Viaggio ai Tropici', 'smoothie dal gusto tropicale con ananas, mango e acqua di cocco', '7', 'smoothie');
 
 

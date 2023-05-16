@@ -33,17 +33,16 @@ public class BevandaController {
 
         result = connessioneController.readFromInput();
 
-        System.out.println("Il risultato e " + result);
 
-        // Separo i JSON e creo un array che riverso nell'arraylist
         if(result != null){
             result = result.replaceAll("\\}\\s*\\{", "},{");
 
             result = "[" + result + "]";
 
+            System.out.println("IL RISULTATO E " + result);
+
             Bevanda[] bevandeArray = gson.fromJson(result, Bevanda[].class);
 
-            // Fai qualcosa con l'array di oggetti Bevanda
             for (Bevanda bevanda : bevandeArray)
                 bevande.add(bevanda);
         }
