@@ -14,7 +14,7 @@ public class ConnessioneController {
     private BufferedReader input;
     private PrintWriter output;
 
-    private final String serverName = "192.168.15.42";
+    private final String serverName = "192.168.1.54";
     private final int serverPort = 8080;
 
 
@@ -51,6 +51,7 @@ public class ConnessioneController {
         String in = null;
 
         try{
+            System.out.println("sto nel try catch \n\n");
             in = input.readLine();
         } catch (IOException e){
             e.printStackTrace();

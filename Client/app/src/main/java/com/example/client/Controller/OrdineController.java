@@ -28,7 +28,7 @@ public class OrdineController {
 
         connessioneController.startConnection();
 
-        connessioneController.writeOnOutput("getCarrello$$"+utente);
+        connessioneController.writeOnOutput("ordine$$getCarrello$$"+utente+ "$$");
 
         result = connessioneController.readFromInput();
 
@@ -55,7 +55,7 @@ public class OrdineController {
 
         connessioneController.startConnection();
 
-        connessioneController.writeOnOutput("addBevandaToOrdine$$"+bevanda.getNome()+"$$"+utente);
+        connessioneController.writeOnOutput("ordine$$addBevandaToOrdine$$"+bevanda.getNome()+"$$"+utente+ "$$");
 
         connessioneController.closeConnection();
 
@@ -66,7 +66,7 @@ public class OrdineController {
 
         connessioneController.startConnection();
 
-        connessioneController.writeOnOutput("removeBevandaFromOrdine"+bevanda.getNome()+"$$"+utente);
+        connessioneController.writeOnOutput("ordine$$removeBevandaFromOrdine"+bevanda.getNome()+"$$"+utente+ "$$");
 
         connessioneController.closeConnection();
 

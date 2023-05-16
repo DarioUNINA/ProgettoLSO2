@@ -29,7 +29,7 @@ public class BevandaController {
 
         connessioneController.startConnection();
 
-        connessioneController.writeOnOutput("getBevande$$"+utente);
+        connessioneController.writeOnOutput("bevanda$$getBevande$$"+utente+ "$$");
 
         result = connessioneController.readFromInput();
 

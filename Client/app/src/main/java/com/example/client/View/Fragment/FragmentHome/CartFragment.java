@@ -1,14 +1,22 @@
 package com.example.client.View.Fragment.FragmentHome;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.client.Model.Bevanda;
 import com.example.client.R;
+import com.example.client.View.Activity.HomeActivity;
+import com.example.client.View.Activity.LoginActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +24,12 @@ import com.example.client.R;
  * create an instance of this fragment.
  */
 public class CartFragment extends Fragment {
+
+
+    private TextView totale;
+    private AppCompatButton conferma;
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +75,47 @@ public class CartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false);
+
+
+        View rootView = inflater.inflate(R.layout.fragment_cart, container, false);
+
+        totale = rootView.findViewById(R.id.prezzoTxt);
+        conferma = rootView.findViewById(R.id.btnPagamento);
+
+        conferma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("CONFERMA")
+                        .setMessage("Sei sicuro di voler pagare?")
+                        .setNegativeButton(android.R.string.no, null)
+                        .setPositiveButton(android.R.string.yes,  new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //apri il dialog della richiesta password
+                            }
+                        }).create().show();
+            }
+        });
+
+        updateTotale();
+
+        return rootView;
+    }
+
+    public TextView getTotale() {
+        return totale;
+    }
+
+    public void setTotale(TextView totale) {
+        this.totale = totale;
+    }
+
+    public void updateTotale(){
+        float tot = 0;
+        for(Bevanda b: ((HomeActivity)getActivity()).getCarrello())
+            tot+=b.getPrezzo();
+
+        totale.setText("$"+String.valueOf(tot));
     }
 }
