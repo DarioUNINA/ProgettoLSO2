@@ -49,7 +49,7 @@ void addBevandaToOrdine(char* bevanda, char* username){
 
     res = runQuery(strings);
 
-        if (PQresultStatus(res) != PGRES_TUPLES_OK){
+    if (PQresultStatus(res) != PGRES_TUPLES_OK){
         printf("No data retrieved\n");
         PQclear(res);
     }else
