@@ -23,13 +23,15 @@ public class ConnessioneController {
 
     }
 
-    public void startConnection(){
+    public String startConnection(){
         try{
             socket = new Socket(serverName, serverPort);
             input = new BufferedReader(new InputStreamReader( socket.getInputStream()));
             output = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+            return "ok";
         } catch (IOException e){
             e.printStackTrace();
+            return null;
         }
     }
 

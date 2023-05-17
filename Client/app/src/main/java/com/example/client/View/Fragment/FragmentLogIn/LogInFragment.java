@@ -2,11 +2,11 @@ package com.example.client.View.Fragment.FragmentLogIn;
 
 import static java.lang.Thread.sleep;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
@@ -105,13 +105,28 @@ public class LogInFragment extends Fragment {
 
                     if(!(username.isEmpty()) && !(password.isEmpty()))
                         utente = utenteController.getUtente(username, password);
+                    else {
+                        getActivity().runOnUiThread(()-> {
+                            new AlertDialog.Builder(getActivity())
+                                    .setTitle("ERRORE")
+                                    .setMessage("Inserire username e password")
+                                    .create().show();
+                        });
+
+                        return;
+                    }
 
                     if(utente != null){
                         Intent intent = new Intent(getContext(), HomeActivity.class);
                         intent.putExtra("utenteUsername", utente.getUsername());
                         startActivity(intent);
                     } else {
-                        System.out.println("log in fallito");
+                        getActivity().runOnUiThread(()->{
+                            new AlertDialog.Builder(getActivity())
+                                    .setTitle("ERRORE")
+                                    .setMessage("Log In fallito. Riprova.")
+                                    .create().show();
+                        });
                     }
                 }).start();
 

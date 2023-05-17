@@ -20,10 +20,12 @@ public class OrdineController {
         gson = new Gson();
     }
 
-    public void chiudiCarrello(String utente){
-        connessioneController.startConnection();
+    public String chiudiCarrello(String utente){
+        if(connessioneController.startConnection() == null)
+            return null;
         connessioneController.writeOnOutput("ordine$$chiudiOrdine$$"+utente+"$$");
         connessioneController.closeConnection();
+        return "ok";
     }
 
 
@@ -31,13 +33,14 @@ public class OrdineController {
         ArrayList<Bevanda> bevande = new ArrayList<>();
         String result = new String();
 
-        connessioneController.startConnection();
+        if(connessioneController.startConnection() == null)
+            return null;
 
         connessioneController.writeOnOutput("ordine$$getCarrello$$"+utente+ "$$");
 
         result = connessioneController.readFromInput();
 
-                connessioneController.closeConnection();
+        connessioneController.closeConnection();
 
 
         // Separo i JSON e creo un array che riverso nell'arraylist
@@ -58,24 +61,31 @@ public class OrdineController {
     }
 
 
-    public void aggiungiACarrello(String utente, String bevanda){
+    public String aggiungiACarrello(String utente, String bevanda){
 
-        connessioneController.startConnection();
+        if(connessioneController.startConnection()== null) {
+            return null;
+        }
 
         connessioneController.writeOnOutput("ordine$$addBevandaToOrdine$$"+bevanda+"$$"+utente+ "$$");
 
         connessioneController.closeConnection();
 
+        return "ok";
+
     }
 
 
-    public void rimuoviDaCarrello(String utente, String bevanda){
+    public String rimuoviDaCarrello(String utente, String bevanda){
 
-        connessioneController.startConnection();
+        if(connessioneController.startConnection() == null)
+            return null;
 
         connessioneController.writeOnOutput("ordine$$removeBevandaFromOrdine$$"+bevanda+"$$"+utente+ "$$");
 
         connessioneController.closeConnection();
+
+        return "ok";
 
     }
 

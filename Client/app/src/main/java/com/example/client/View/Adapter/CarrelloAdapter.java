@@ -69,7 +69,7 @@ public class CarrelloAdapter extends RecyclerView.Adapter<CarrelloAdapter.Carrel
             @Override
             public void onClick(View view) {
                 new AlertDialog.Builder(context)
-                        .setTitle("Descrizione")
+                        .setTitle(bevande.get(position).getNome())
                         .setMessage(holder.descrizione)
                         .create().show();
             }

@@ -71,7 +71,7 @@ public class CocktailsAdapter extends RecyclerView.Adapter<CocktailsAdapter.Cock
             @Override
             public void onClick(View view) {
                 new AlertDialog.Builder(context)
-                        .setTitle("Descrizione")
+                        .setTitle(cocktails.get(position).getNome())
                         .setMessage(holder.descrizione)
                         .create().show();
             }

@@ -64,7 +64,7 @@ public class SmoothieAdapter extends RecyclerView.Adapter<SmoothieAdapter.Smooth
             @Override
             public void onClick(View view) {
                 new AlertDialog.Builder(context)
-                        .setTitle("Descrizione")
+                        .setTitle(smoothies.get(position).getNome())
                         .setMessage(holder.descrizione)
                         .create().show();
             }
@@ -81,7 +81,16 @@ public class SmoothieAdapter extends RecyclerView.Adapter<SmoothieAdapter.Smooth
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 new Thread(()->{
                                     OrdineController controller = new OrdineController();
-                                    controller.aggiungiACarrello(((HomeActivity)menuFragment.getActivity()).getUtente(), smoothies.get(position).getNome());
+                                    String output = controller.aggiungiACarrello(((HomeActivity)menuFragment.getActivity()).getUtente(), smoothies.get(position).getNome());
+                                    if(output == null) {
+                                        menuFragment.getActivity().runOnUiThread(() -> {
+                                            new AlertDialog.Builder(menuFragment.getActivity())
+                                                    .setTitle("ERRORE")
+                                                    .setMessage("Errore di connessione, riprova")
+                                                    .create().show();
+                                        });
+                                    }
+
                                 }).start();
                                 ((HomeActivity)menuFragment.getActivity()).getCarrello().add(smoothies.get(position));
                             }

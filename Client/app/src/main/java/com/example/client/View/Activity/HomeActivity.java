@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -57,22 +58,34 @@ public class HomeActivity extends AppCompatActivity {
             carrello = ordineController.getCarrello(utente);
 
             runOnUiThread(()->{
-                CocktailsAdapter adapter = new CocktailsAdapter(bevande, menuFragment.getContext(), menuFragment);
-                menuFragment.setCocktailsAdapter(adapter);
-                menuFragment.setSmoothieAdapter(new SmoothieAdapter(bevande,menuFragment.getContext(), menuFragment));
+                if(bevande == null)
+                    new AlertDialog.Builder(this)
+                            .setTitle("ERRORE")
+                            .setMessage("Errore di connesione, riprova.")
+                            .create().show();
+                else{
 
-                menuFragment.recyclerViewBevande.setAdapter(adapter);
+                    if(carrello == null)
+                        new AlertDialog.Builder(this)
+                                .setTitle("ERRORE")
+                                .setMessage("Errore di connesione, riprova.")
+                                .create().show();
+                    else{
 
-                menuFragment.getCocktailsAdapter().notifyDataSetChanged();
-                menuFragment.getSmoothieAdapter().notifyDataSetChanged();
+                        CocktailsAdapter adapter = new CocktailsAdapter(bevande, menuFragment.getContext(), menuFragment);
+                        menuFragment.setCocktailsAdapter(adapter);
+                        menuFragment.setSmoothieAdapter(new SmoothieAdapter(bevande,menuFragment.getContext(), menuFragment));
+
+                        menuFragment.recyclerViewBevande.setAdapter(adapter);
+
+                        menuFragment.getCocktailsAdapter().notifyDataSetChanged();
+                        menuFragment.getSmoothieAdapter().notifyDataSetChanged();
+                    }
+                }
+
             });
 
-
-
         }).start();
-
-
-
 
         tabLayout = findViewById(R.id.tabLayoutHome);
 

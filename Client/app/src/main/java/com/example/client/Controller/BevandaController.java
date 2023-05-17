@@ -27,7 +27,8 @@ public class BevandaController {
         ArrayList<Bevanda> bevande = new ArrayList<>();
         String result = new String();
 
-        connessioneController.startConnection();
+        if(connessioneController.startConnection().equals("null"))
+            return null;
 
         connessioneController.writeOnOutput("bevanda$$getBevande$$"+utente+ "$$");
 

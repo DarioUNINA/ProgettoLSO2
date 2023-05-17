@@ -28,7 +28,8 @@ public class UtenteController {
 
         String result = null;
 
-        connessioneController.startConnection();
+        if(connessioneController.startConnection() == null)
+            return null;
 
         //richiesta
         connessioneController.writeOnOutput( "utente$$getUtente$$"+username+"$$"+password + "$$");
@@ -50,7 +51,8 @@ public class UtenteController {
 
         String result = null;
 
-        connessioneController.startConnection();
+        if(connessioneController.startConnection() == null)
+            return null;
 
 
         //richiesta

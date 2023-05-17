@@ -1,14 +1,22 @@
 package com.example.client.View.Fragment.FragmentLogIn;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
+import com.example.client.Controller.UtenteController;
+import com.example.client.Model.Utente;
 import com.example.client.R;
+import com.example.client.View.Activity.HomeActivity;
 import com.google.android.material.card.MaterialCardView;
 
 /**
@@ -19,9 +27,10 @@ import com.google.android.material.card.MaterialCardView;
 public class SignUpFragment extends Fragment {
 
     private MaterialCardView materialBtnSign, materialUser, materialPwd;
+    private AppCompatButton signUpBotton;
 
-    float v=0;
-
+    final float v = 0;
+    private EditText usernameTxt, pwdTxt;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -71,6 +80,9 @@ public class SignUpFragment extends Fragment {
         materialBtnSign = rootView.findViewById(R.id.materialBtnSign);
         materialPwd = rootView.findViewById(R.id.materialPwd);
         materialUser = rootView.findViewById(R.id.materialUser);
+        usernameTxt = rootView.findViewById(R.id.edtUsernameSignUp);
+        pwdTxt = rootView.findViewById(R.id.edtPasswordSignUp);
+        signUpBotton = rootView.findViewById(R.id.btnSignUp);
 
 
 
@@ -87,6 +99,36 @@ public class SignUpFragment extends Fragment {
         materialUser.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(350).start();
         materialPwd.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(450).start();
         materialBtnSign.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
+
+        signUpBotton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String username =usernameTxt.getText().toString(), password = pwdTxt.getText().toString();
+
+                if(username.equals("") || password.equals(""))
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("ERRORE")
+                            .setMessage("Inserire username e password")
+                            .create().show();
+                else
+                    new Thread(()->{
+                        Utente utente = new UtenteController().registraUtente(username, password);
+
+                        if(utente != null){
+                            Intent intent = new Intent(getContext(), HomeActivity.class);
+                            intent.putExtra("utenteUsername", utente.getUsername());
+                            startActivity(intent);
+                        }else{
+                            getActivity().runOnUiThread(()->{
+                                new AlertDialog.Builder(getActivity())
+                                        .setTitle("ERRORE")
+                                        .setMessage("Nome utente non disponibile")
+                                        .create().show();
+                            });
+                        }
+                    }).start();
+            }
+        });
 
         return rootView;
     }
