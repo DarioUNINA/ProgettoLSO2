@@ -47,6 +47,7 @@ void registrazione(char* username, char* password, char* result){
     if (PQresultStatus(res) != PGRES_COMMAND_OK ){
         printf("Creazione utente fallita\n");
         PQclear(res);
+        strcat(result,"false");
         return;
     }else
         printf("Utente creato\n");
@@ -66,7 +67,6 @@ void registrazione(char* username, char* password, char* result){
     }else
         printf("Ordine creato\n");
 
-    free(result);
     strcat(result,"true");
 
 }

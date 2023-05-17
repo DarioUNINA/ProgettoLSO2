@@ -27,16 +27,8 @@ void* utenteController(){
             if(strcmp(command, "registrazione") == 0){
                 char* username = strtok(NULL, "$$");
                 char* password = strtok(NULL, "$$");
-                getUtente(username, password, result);
+                registrazione(username, password, result);
 
-                if(strcmp(result, "false") == 0){
-                    result = memset(result, 0, sizeof(char)*DIMBUFF);
-                    registrazione(username, password, result);
-                    
-                }else{
-                    result = memset(result, 0, sizeof(char)*DIMBUFF);
-                    strcat(result,"false");
-                }
             }
 
             write(socket, result, strlen(result));
