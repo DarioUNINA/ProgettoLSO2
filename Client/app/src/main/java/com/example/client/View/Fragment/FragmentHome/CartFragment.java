@@ -34,8 +34,8 @@ public class CartFragment extends Fragment {
     private TextView totale;
     private FloatingActionButton conferma;
 
-    private RecyclerView recyclerView;
-    private CarrelloAdapter carrelloAdapter;
+    public RecyclerView recyclerView;
+    public CarrelloAdapter carrelloAdapter;
 
 
     // TODO: Rename parameter arguments, choose names that match

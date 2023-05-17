@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.client.Model.Bevanda;
 import com.example.client.R;
 import com.example.client.View.Activity.HomeActivity;
 import com.example.client.View.Adapter.CocktailsAdapter;
@@ -26,8 +27,8 @@ import com.google.android.material.tabs.TabLayout;
  */
 public class MenuFragment extends Fragment {
 
-    private TabLayout tabLayout;
-    private RecyclerView recyclerViewBevande;
+    public TabLayout tabLayout;
+    public RecyclerView recyclerViewBevande;
 
 
     private CocktailsAdapter cocktailsAdapter;
@@ -94,26 +95,19 @@ public class MenuFragment extends Fragment {
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FF6E01"));
 
 
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerViewBevande.setLayoutManager(linearLayoutManager);
-
-        cocktailsAdapter = new CocktailsAdapter(((HomeActivity)getActivity()).getBevande(), recyclerViewBevande.getContext());
-        recyclerViewBevande.setAdapter(cocktailsAdapter);
-        cocktailsAdapter.notifyDataSetChanged();
-
-        smoothieAdapter = new SmoothieAdapter(((HomeActivity)getActivity()).getBevande(), recyclerViewBevande.getContext());
 
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if(tab.getPosition() == 0){
-                    recyclerViewBevande.setLayoutManager(linearLayoutManager);
                     recyclerViewBevande.setAdapter(cocktailsAdapter);
                     cocktailsAdapter.notifyDataSetChanged();
                 }else {
-                    recyclerViewBevande.setLayoutManager(linearLayoutManager);
                     recyclerViewBevande.setAdapter(smoothieAdapter);
                     smoothieAdapter.notifyDataSetChanged();
                 }
@@ -140,6 +134,14 @@ public class MenuFragment extends Fragment {
 
     public void setCocktailsAdapter(CocktailsAdapter cocktailsAdapter) {
         this.cocktailsAdapter = cocktailsAdapter;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        if(cocktailsAdapter!= null)
+            recyclerViewBevande.setAdapter(cocktailsAdapter);
     }
 
     public SmoothieAdapter getSmoothieAdapter() {

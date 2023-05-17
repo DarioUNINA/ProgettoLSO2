@@ -29,7 +29,7 @@ public class OrdineController {
 
     public ArrayList<Bevanda> getCarrello(String utente){
         ArrayList<Bevanda> bevande = new ArrayList<>();
-        String result = null;
+        String result = new String();
 
         connessioneController.startConnection();
 
@@ -37,7 +37,8 @@ public class OrdineController {
 
         result = connessioneController.readFromInput();
 
-        System.out.println(result);
+                connessioneController.closeConnection();
+
 
         // Separo i JSON e creo un array che riverso nell'arraylist
         if(result != null){
@@ -52,17 +53,16 @@ public class OrdineController {
                 bevande.add(bevanda);
         }
 
-        connessioneController.closeConnection();
 
         return bevande;
     }
 
 
-    public void aggiungiACarrello(String utente, Bevanda bevanda){
+    public void aggiungiACarrello(String utente, String bevanda){
 
         connessioneController.startConnection();
 
-        connessioneController.writeOnOutput("ordine$$addBevandaToOrdine$$"+bevanda.getNome()+"$$"+utente+ "$$");
+        connessioneController.writeOnOutput("ordine$$addBevandaToOrdine$$"+bevanda+"$$"+utente+ "$$");
 
         connessioneController.closeConnection();
 

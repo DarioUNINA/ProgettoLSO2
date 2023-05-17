@@ -25,21 +25,20 @@ public class BevandaController {
 
     public ArrayList<Bevanda> getBevande(String utente){
         ArrayList<Bevanda> bevande = new ArrayList<>();
-        String result = null;
+        String result = new String();
 
         connessioneController.startConnection();
 
         connessioneController.writeOnOutput("bevanda$$getBevande$$"+utente+ "$$");
 
         result = connessioneController.readFromInput();
+                connessioneController.closeConnection();
 
 
         if(result != null){
             result = result.replaceAll("\\}\\s*\\{", "},{");
 
             result = "[" + result + "]";
-
-            System.out.println("IL RISULTATO E " + result);
 
             Bevanda[] bevandeArray = gson.fromJson(result, Bevanda[].class);
 

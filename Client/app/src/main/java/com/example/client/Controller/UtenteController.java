@@ -38,6 +38,7 @@ public class UtenteController {
 
         connessioneController.closeConnection();
 
+
         if(result.equals("true"))
             return new Utente(username, password);
         else

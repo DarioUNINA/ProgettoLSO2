@@ -28,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private MenuFragment menuFragment = new MenuFragment();
     private SettingFragment settingFragment = new SettingFragment();
-    private CartFragment cartFragment = new CartFragment();;
+    public CartFragment cartFragment = new CartFragment();
 
     private String utente;
 
@@ -42,6 +42,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private OrdineController ordineController = new OrdineController();
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,11 +56,18 @@ public class HomeActivity extends AppCompatActivity {
             bevande = bevandaController.getBevande(utente);
             carrello = ordineController.getCarrello(utente);
 
-            menuFragment.setCocktailsAdapter(new CocktailsAdapter(bevande, menuFragment.getContext()));
-            menuFragment.setSmoothieAdapter(new SmoothieAdapter(bevande,menuFragment.getContext()));
+            runOnUiThread(()->{
+                CocktailsAdapter adapter = new CocktailsAdapter(bevande, menuFragment.getContext(), menuFragment);
+                menuFragment.setCocktailsAdapter(adapter);
+                menuFragment.setSmoothieAdapter(new SmoothieAdapter(bevande,menuFragment.getContext(), menuFragment));
 
-            menuFragment.getCocktailsAdapter().notifyDataSetChanged();
-            menuFragment.getSmoothieAdapter().notifyDataSetChanged();
+                menuFragment.recyclerViewBevande.setAdapter(adapter);
+
+                menuFragment.getCocktailsAdapter().notifyDataSetChanged();
+                menuFragment.getSmoothieAdapter().notifyDataSetChanged();
+            });
+
+
 
         }).start();
 
@@ -73,6 +82,7 @@ public class HomeActivity extends AppCompatActivity {
         tabLayout.setTabGravity(tabLayout.GRAVITY_FILL);
 
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FF6E01"));
+        tabLayout.getTabAt(1).getIcon().setTint(Color.parseColor("#FF6E01"));
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -81,9 +91,12 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+
+
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                tabLayout.getTabAt(1).getIcon().setTint(Color.BLACK);
                 if(tab.getPosition() == 0){
                     tab.getIcon().setTint(Color.parseColor("#FF6E01"));
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -93,6 +106,7 @@ public class HomeActivity extends AppCompatActivity {
                     tab.getIcon().setTint(Color.parseColor("#FF6E01"));
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.constraintHome, menuFragment, null);
+                    menuFragment.recyclerViewBevande.getAdapter().notifyDataSetChanged();
                     fragmentTransaction.commit();
                 }else {
                     tab.getIcon().setTint(Color.parseColor("#FF6E01"));

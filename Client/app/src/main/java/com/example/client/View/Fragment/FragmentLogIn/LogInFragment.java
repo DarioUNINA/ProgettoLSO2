@@ -103,9 +103,8 @@ public class LogInFragment extends Fragment {
                     String password = edtPassword.getText().toString();
                     Utente utente = null;
 
-//                    if(!(username.isEmpty()) && !(password.isEmpty()))
-//                        utente = utenteController.getUtente(username, password);
-                    utente = new Utente("Dario", "123");
+                    if(!(username.isEmpty()) && !(password.isEmpty()))
+                        utente = utenteController.getUtente(username, password);
 
                     if(utente != null){
                         Intent intent = new Intent(getContext(), HomeActivity.class);

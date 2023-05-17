@@ -61,9 +61,9 @@ public class CarrelloAdapter extends RecyclerView.Adapter<CarrelloAdapter.Carrel
         holder.descrizione = bevande.get(position).getDescrizione();
 
         if(bevande.get(position).getCategoria().equals("smoothie"))
-            holder.smoothieView.setVisibility(View.INVISIBLE);
-        else
             holder.cocktailView.setVisibility(View.INVISIBLE);
+        else
+            holder.smoothieView.setVisibility(View.INVISIBLE);
 
         holder.infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,11 +90,16 @@ public class CarrelloAdapter extends RecyclerView.Adapter<CarrelloAdapter.Carrel
                                 new Thread(()->{
                                     OrdineController ordineController = new OrdineController();
                                     ordineController.rimuoviDaCarrello(((HomeActivity)cartFragment.getActivity()).getUtente(), holder.txtNome.getText().toString());
+
                                 }).start();
 
-                                for(Bevanda b: bevande)
-                                    if(b.getNome().equals(holder.txtNome.getText()))
-                                        bevande.remove(b);
+
+                                    for(int j = 0; j< bevande.size(); j++)
+                                        if(bevande.get(j).getNome().equals(holder.txtNome.getText())) {
+                                            bevande.remove(j);
+                                            break;
+                                        }
+
                                 cartFragment.updateTotale();
                                 notifyDataSetChanged();
                             }
