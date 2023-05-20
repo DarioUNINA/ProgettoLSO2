@@ -26,7 +26,7 @@ public class UtenteController {
     public Utente getUtente(String username, String password){
 
 
-        String result = null;
+        String result = "true";
 
         if(connessioneController.startConnection() == null)
             return null;

@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.client.Controller.OrdineController;
 import com.example.client.Model.Bevanda;
@@ -102,7 +103,12 @@ public class CartFragment extends Fragment {
         conferma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(getActivity())
+
+                if(((HomeActivity)getActivity()).getCarrello().isEmpty()){
+                    Toast.makeText(getActivity(), "Carrello vuoto", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    new AlertDialog.Builder(getActivity())
                         .setTitle("CONFERMA")
                         .setMessage("Sei sicuro di voler pagare?")
                         .setNegativeButton(android.R.string.no, null)
@@ -119,6 +125,7 @@ public class CartFragment extends Fragment {
 
                             }
                         }).create().show();
+                }
             }
         });
 

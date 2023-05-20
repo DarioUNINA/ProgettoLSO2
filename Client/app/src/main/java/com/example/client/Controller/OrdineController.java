@@ -33,6 +33,7 @@ public class OrdineController {
         ArrayList<Bevanda> bevande = new ArrayList<>();
         String result = new String();
 
+
         if(connessioneController.startConnection() == null)
             return null;
 

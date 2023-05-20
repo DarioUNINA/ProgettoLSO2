@@ -27,6 +27,8 @@ public class BevandaController {
         ArrayList<Bevanda> bevande = new ArrayList<>();
         String result = new String();
 
+        result += "{nome: nome1, descrizione: descrizione1, prezzo: 1, categoria: drink}";
+
         if(connessioneController.startConnection().equals("null"))
             return null;
 
